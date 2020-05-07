@@ -7,7 +7,7 @@ export const getAllRoomThreads = (state) => {
     threads = threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
   } else if (state.threadsSort === "Latest") {
     threads = threads.sort((a, b) =>
-      a.details.time > b.details.time ? -1 : 1
+      a.details.time > b.details.time ? 1 : -1
     );
   }
   if (state.currentRoom === "") return threads;
