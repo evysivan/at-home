@@ -1,6 +1,13 @@
 import React from "react";
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import IconButton from "@material-ui/core/IconButton";
+import PersonIcon from "@material-ui/icons/Person";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import EmailIcon from "@material-ui/icons/Email";
+import { useSelector } from "react-redux";
+import { getAllThreads } from "./redux/selectors";
 
 import styled from "styled-components";
 import logo from "./assets/logo.png";
@@ -17,13 +24,33 @@ const StyledTopPanel = styled.div`
 `;
 
 function TopPanel() {
+  const threads = useSelector(getAllThreads);
+
   return (
     <StyledTopPanel>
       <div style={{ display: "flex", alignItems: "center" }}>
         <img src={logo} className="logo" alt="logo" />
-        <TextField id="filled-basic" label="Search" variant="filled" />
+        <Autocomplete
+          id="combo-box-demo"
+          options={threads}
+          getOptionLabel={(option) => option.details.title}
+          style={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Search" variant="outlined" />
+          )}
+        />
       </div>
-      <h3 className="top-panel-username">Hello Username!</h3>
+      <div>
+        <IconButton color="default" aria-label="">
+          <EmailIcon />
+        </IconButton>
+        <IconButton color="default" aria-label="">
+          <NotificationsIcon />
+        </IconButton>
+        <IconButton color="default" aria-label="">
+          <PersonIcon />
+        </IconButton>
+      </div>
     </StyledTopPanel>
   );
 }

@@ -6,7 +6,7 @@
   height: 100%;
 }
 .logo {
-  height: 10vmin;
+  height: 8vmin;
 }
 .MuiFormControl-root.MuiTextField-root {
   margin-left: 20px;
@@ -15,8 +15,35 @@
 .top-panel-username {
   color: gray;
 }
+.MuiDivider-root {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.side-list-divider {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.arrow-icon {
+  padding: 0 !important;
+}
+.thread-image {
+  max-height: 500px;
+  align-self: center;
+}
+
+.btn-clicked {
+  background: linear-gradient(
+    354deg,
+    rgba(48, 49, 126, 0.3) 13%,
+    rgba(0, 212, 255, 0.4) 100%
+  ) !important;
+}
+.MuiFilledInput-colorSecondary.MuiFilledInput-underline:after {
+  border-bottom-color: #b843e3 !important;
+}
+.MuiFormLabel-colorSecondary.Mui-focused {
+  color: #b843e3 !important;
+}
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
