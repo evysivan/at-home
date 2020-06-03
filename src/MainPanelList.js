@@ -3,16 +3,22 @@ import styled from "styled-components";
 import MainPanelThread from "./MainPanelThread";
 import Divider from "@material-ui/core/Divider";
 import { useSelector } from "react-redux";
-import { getAllRoomThreads } from "./redux/selectors";
+import {
+  getAllSubscribedRoomThreads,
+  getAllRoomThreads,
+} from "./redux/selectors";
 
 const StyledContainer = styled.div`
   box-sizing: border-box;
-  direction: rtl;
-  /* height: 100%; */
+  margin: 10px;
 `;
 
-const MainPanelList = () => {
-  const threads = useSelector(getAllRoomThreads);
+const MainPanelList = ({ room }) => {
+  const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
+  const allThreads = useSelector(getAllRoomThreads);
+  console.log(room);
+
+  const threads = room ? allThreads : subscribedThreads;
 
   return (
     <StyledContainer>

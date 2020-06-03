@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
 import { setRoom } from "./redux/actions";
+import { Link } from "react-router-dom";
 
 const LiContainer = styled.li`
   color: rgba(0, 0, 0, 0.6);
@@ -20,23 +21,26 @@ const Container = styled.div`
 `;
 
 const SidePanelListItem = ({ room }) => {
-  console.log(room);
   const dispatch = useDispatch();
 
   return (
-    <LiContainer>
-      <Container>
-        <Button
-          style={{ width: "100%" }}
-          onClick={() => dispatch(setRoom(room.roomId))}
-        >
-          <p>{room.title}</p>
-        </Button>
-        <IconButton aria-label="delete" size="small">
-          <MoreVertIcon fontSize="inherit" />
-        </IconButton>
-      </Container>
-    </LiContainer>
+    <Link to="/room">
+      <LiContainer>
+        <Container>
+          <Button
+            style={{ width: "100%" }}
+            onClick={() => {
+              dispatch(setRoom(room.id));
+            }}
+          >
+            <p>{room.title}</p>
+          </Button>
+          <IconButton aria-label="delete" size="small">
+            <MoreVertIcon fontSize="inherit" />
+          </IconButton>
+        </Container>
+      </LiContainer>
+    </Link>
   );
 };
 

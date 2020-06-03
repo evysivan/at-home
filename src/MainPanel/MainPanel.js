@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 import styled from "styled-components";
 import MainPanelHeader from "./MainPanelHeader";
-import MainPanelList from "./MainPanelList";
+import MainPanelList from "../MainPanelList";
 
 const StyledMainPanel = styled.div`
   box-sizing: border-box;

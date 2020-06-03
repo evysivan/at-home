@@ -1,16 +1,15 @@
 import * as AT from "./action-types";
 import mockThreads from "../mockThreads";
+import mockRooms from "../roomMock";
 import _ from "lodash";
 
 const initialState = {
   isLoading: false,
   currentRoom: "",
-  rooms: _.uniqBy(
-    mockThreads.map((thread) => thread.room),
-    "roomId"
-  ),
+  rooms: mockRooms,
   threads: mockThreads,
   threadsSort: "Hot",
+  subscribedRooms: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -53,6 +52,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         threadsSort: action.criteria,
         // threads,
+      };
+    case AT.ADD_SUBSCRIPTION:
+      return {
+        ...state,
+        subscribedRooms: [...state.subscribedRooms, action.roomId],
+      };
+    case AT.REMOVE_SUBSCRIPTION:
+      return {
+        ...state,
+        subscribedRooms: state.subscribedRooms.filter(
+          (item) => item !== action.roomId
+        ),
       };
     default:
       return state;

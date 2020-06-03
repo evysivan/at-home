@@ -8,7 +8,6 @@ const StyledSidePanel = styled.div`
   box-sizing: border-box;
   position: relative;
   height: 100%;
-  padding: 10px;
   flex: 0.2;
 `;
 
@@ -19,7 +18,6 @@ const StyledContainer = styled.div`
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
   width: 100%;
   height: 100%;
-  border-radius: 5px;
 `;
 
 function SidePanel() {

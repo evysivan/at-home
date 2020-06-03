@@ -2,3 +2,5 @@ export const SET_ROOM = "SET_ROOM";
 export const VOTE_UP = "VOTE_UP";
 export const VOTE_DOWN = "VOTE_DOWN";
 export const SORT_THREADS_CRITERIA = "SORT_THREADS_CRITERIA";
+export const ADD_SUBSCRIPTION = "ADD_SUBSCRIPTION";
+export const REMOVE_SUBSCRIPTION = "REMOVE_SUBSCRIPTION";

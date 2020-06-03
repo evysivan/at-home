@@ -2,10 +2,12 @@ import React from "react";
 import "./App.css";
 import TopPanel from "./TopPanel";
 import SidePanel from "./SidePanel";
-import MainPanel from "./MainPanel";
+import MainPanel from "./MainPanel/MainPanel";
 import styled from "styled-components";
 import bg2 from "./assets/2.jpg";
 import bg3 from "./assets/3.png";
+import Room from "./Room/Room";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const StyledHome = styled.div`
   height: 100%;
@@ -16,10 +18,21 @@ const StyledHome = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* purple gradient */
-  background: linear-gradient(160deg, #1d2b64, #f8cdda);
-  /* horizon gradient */
-  /* background: linear-gradient(160deg, #003973, #e5e5be); */
+
+  background: linear-gradient(160deg, #2c3e50, #bdc3c7); /* gray gradient */
+  background: linear-gradient(160deg, #003973, #e5e5be); /* horizon gradient */
+  background: linear-gradient(
+    160deg,
+    #0f2027,
+    #203a43,
+    #2c5364
+  ); /*black gradient */
+  background: linear-gradient(
+    160deg,
+    #1f4037,
+    #99f2c8
+  ); /* harvey green gradient */
+  background: linear-gradient(160deg, #1d2b64, #f8cdda); /* purple gradient */
 `;
 
 const StyledContainer = styled.div`
@@ -27,22 +40,30 @@ const StyledContainer = styled.div`
   position: relative;
   overflow: auto;
   height: 100%;
-  width: 90vw;
+  width: 100vw;
   align-self: center;
-  padding-top: 20px;
   display: flex;
   flex-direction: row;
 `;
 
 function Home() {
   return (
-    <StyledHome>
-      <TopPanel />
-      <StyledContainer>
-        <SidePanel />
-        <MainPanel />
-      </StyledContainer>
-    </StyledHome>
+    <Router>
+      <StyledHome>
+        <TopPanel />
+        <StyledContainer>
+          <SidePanel />
+          <Switch>
+            <Route path="/room">
+              <Room />
+            </Route>
+            <Route path="/" exact>
+              <MainPanel />
+            </Route>
+          </Switch>
+        </StyledContainer>
+      </StyledHome>
+    </Router>
   );
 }
 

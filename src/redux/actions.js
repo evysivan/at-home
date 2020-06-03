@@ -16,3 +16,11 @@ export const setSortCriteria = (criteria) => ({
   type: AT.SORT_THREADS_CRITERIA,
   criteria,
 });
+export const addRoomSubscription = (roomId) => ({
+  type: AT.ADD_SUBSCRIPTION,
+  roomId,
+});
+export const removeRoomSubscription = (roomId) => ({
+  type: AT.REMOVE_SUBSCRIPTION,
+  roomId,
+});

@@ -5,6 +5,13 @@
   text-align: center;
   height: 100%;
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
 .logo {
   height: 8vmin;
 }
@@ -27,6 +34,9 @@
 .thread-image {
   max-height: 500px;
   align-self: center;
+}
+.MuiButton-startIcon {
+  text-transform: none;
 }
 
 .btn-clicked {

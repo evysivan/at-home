@@ -6,11 +6,18 @@ import IconButton from "@material-ui/core/IconButton";
 import PersonIcon from "@material-ui/icons/Person";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import EmailIcon from "@material-ui/icons/Email";
-import { useSelector } from "react-redux";
-import { getAllThreads } from "./redux/selectors";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getAllRooms, getAllSubscribedRooms } from "./redux/selectors";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "./assets/logo.png";
+import {
+  setRoom,
+  addRoomSubscription,
+  removeRoomSubscription,
+} from "./redux/actions";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
 
 const StyledTopPanel = styled.div`
   background-color: #fff;
@@ -21,29 +28,70 @@ const StyledTopPanel = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 `;
 
 function TopPanel() {
-  const threads = useSelector(getAllThreads);
+  const rooms = useSelector(getAllRooms);
+  const subscriptions = useSelector(getAllSubscribedRooms);
+
+  const dispatch = useDispatch();
+
+  const isRoomSubscribed = (id) => {
+    if (subscriptions.includes(id)) return true;
+    return false;
+  };
 
   return (
     <StyledTopPanel>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img src={logo} className="logo" alt="logo" />
-        <Autocomplete
-          id="combo-box-demo"
-          options={threads}
-          getOptionLabel={(option) => option.details.title}
-          style={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Search" variant="outlined" />
-          )}
+      <Link to="/" onClick={() => dispatch(setRoom(""))}>
+        <img
+          src={logo}
+          style={{ width: "60px", height: "60px" }}
+          className="logo"
+          alt="logo"
         />
-      </div>
+      </Link>
+      <Autocomplete
+        id="combo-box-demo"
+        options={rooms && rooms.length > 0 ? rooms : []}
+        getOptionLabel={(option) => option.title}
+        renderOption={(option) => (
+          <Link to="/room">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+              onClick={() => {
+                dispatch(setRoom(option.id));
+              }}
+            >
+              <p style={{ flex: 1 }}>{option.title}</p>
+              <Button
+                style={{ margin: 5 }}
+                variant="outlined"
+                color="default"
+                startIcon={<AddIcon />}
+                onClick={() => {
+                  if (isRoomSubscribed(option.id))
+                    dispatch(removeRoomSubscription(option.id));
+                  else {
+                    dispatch(addRoomSubscription(option.id));
+                  }
+                }}
+              >
+                {isRoomSubscribed(option.id) ? "Unsubscribe" : "Subscribe"}
+              </Button>
+            </div>
+          </Link>
+        )}
+        renderInput={(params) => (
+          <TextField {...params} label="Search" variant="outlined" />
+        )}
+      />
       <div>
-        <IconButton color="default" aria-label="">
-          <EmailIcon />
-        </IconButton>
         <IconButton color="default" aria-label="">
           <NotificationsIcon />
         </IconButton>
