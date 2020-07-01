@@ -29,9 +29,12 @@ function Search(props) {
       thread.details.title.includes(searchTerm) ||
       thread.room.title.includes(searchTerm)
   );
+  const filteredRooms = rooms.filter(
+    (room) => room.title.includes(searchTerm) || room.title.includes(searchTerm)
+  );
   const filteredComments = comments.filter((comment) => !comment.indent);
 
-  const relevantRooms = rooms.slice(0, 3);
+  const relevantRooms = filteredRooms.slice(0, 3);
 
   return (
     <div style={{ flex: 1 }}>
@@ -187,7 +190,15 @@ function Search(props) {
                 overflow: "hidden",
               }}
             >
-              <p style={{ fontSize: 30 }}>Comments</p>
+              <p
+                style={{
+                  fontSize: 30,
+                  marginLeft: 5,
+                  color: "rgba(0,0,0,0.6)",
+                }}
+              >
+                Comments
+              </p>
               <div
                 style={{
                   height: "100%",

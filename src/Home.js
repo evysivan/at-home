@@ -36,7 +36,7 @@ const StyledHome = styled.div`
     #1f4037,
     #99f2c8 */
   /* ); harvey green gradient */
-  /* background: linear-gradient(160deg, #1d2b64, #f8cdda); purple gradient */
+  
 `;
 
 const StyledContainer = styled.div`

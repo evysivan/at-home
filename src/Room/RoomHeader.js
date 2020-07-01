@@ -15,6 +15,9 @@ const StyledRoomHeader = styled.div`
   min-height: 50px;
   padding: 10px;
   box-sizing: border-box;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
 `;
 
 function RoomHeader({ title, id }) {
