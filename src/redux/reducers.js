@@ -1,15 +1,19 @@
 import * as AT from "./action-types";
 import mockThreads from "../mockThreads";
 import mockRooms from "../roomMock";
+import mockComments from "../mockComments";
 import _ from "lodash";
 
 const initialState = {
   isLoading: false,
   currentRoom: "",
+  currentPost: "",
   rooms: mockRooms,
   threads: mockThreads,
+  comments: mockComments,
   threadsSort: "Hot",
   subscribedRooms: [],
+  searchTerm: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -64,6 +68,16 @@ const rootReducer = (state = initialState, action) => {
         subscribedRooms: state.subscribedRooms.filter(
           (item) => item !== action.roomId
         ),
+      };
+    case AT.SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchTerm: action.searchTerm,
+      };
+    case AT.SET_POST:
+      return {
+        ...state,
+        currentPost: action.currentPost,
       };
     default:
       return state;

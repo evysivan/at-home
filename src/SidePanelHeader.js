@@ -8,14 +8,14 @@ import bg from "./assets/sidePanelHeaderBG.jpg";
 const StyledHeader = styled.div`
   display: inline-block;
   width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
   box-sizing: border-box;
-  padding: 10px;
   color: gray;
+  padding: 20px;
 `;
 
 const SidePanelHeader = () => {
@@ -23,7 +23,7 @@ const SidePanelHeader = () => {
 
   return (
     <StyledHeader>
-      <h1 style={{ margin: 0, color: "black" }}>Rooms</h1>
+      <p style={{ margin: 0, color: "gray" }}>Subscribed rooms</p>
     </StyledHeader>
   );
 };

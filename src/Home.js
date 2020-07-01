@@ -7,6 +7,8 @@ import styled from "styled-components";
 import bg2 from "./assets/2.jpg";
 import bg3 from "./assets/3.png";
 import Room from "./Room/Room";
+import Search from "./Search/Search";
+import Post from "./Post/Post";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const StyledHome = styled.div`
@@ -14,25 +16,27 @@ const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url(${bg3});
-  background-position: center;
+  background-color: rgba(0,0,0,0.1);
+  /* background-image: url(${bg3}); */
+  /* background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-
-  background: linear-gradient(160deg, #2c3e50, #bdc3c7); /* gray gradient */
-  background: linear-gradient(160deg, #003973, #e5e5be); /* horizon gradient */
+  background-repeat: no-repeat; */
+  /* gray gradient */
+  /* background: linear-gradient(160deg, #2c3e50, #bdc3c7);  */
+  /* horizon gradient */
+  /* background: linear-gradient(160deg, #003973, #e5e5be); 
   background: linear-gradient(
     160deg,
     #0f2027,
     #203a43,
-    #2c5364
-  ); /*black gradient */
-  background: linear-gradient(
+    #2c5364 */
+  /* ); black gradient */
+  /* background: linear-gradient(
     160deg,
     #1f4037,
-    #99f2c8
-  ); /* harvey green gradient */
-  background: linear-gradient(160deg, #1d2b64, #f8cdda); /* purple gradient */
+    #99f2c8 */
+  /* ); harvey green gradient */
+  /* background: linear-gradient(160deg, #1d2b64, #f8cdda); purple gradient */
 `;
 
 const StyledContainer = styled.div`
@@ -52,13 +56,20 @@ function Home() {
       <StyledHome>
         <TopPanel />
         <StyledContainer>
-          <SidePanel />
           <Switch>
             <Route path="/room">
+              <SidePanel />
               <Room />
             </Route>
             <Route path="/" exact>
+              <SidePanel />
               <MainPanel />
+            </Route>
+            <Route path="/search" exact>
+              <Search />
+            </Route>
+            <Route path="/post" exact>
+              <Post />
             </Route>
           </Switch>
         </StyledContainer>

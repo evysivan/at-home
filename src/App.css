@@ -1,6 +1,34 @@
 #root {
   height: 100%;
 }
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu {
+  display: flex;
+  flex-direction: row;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+  color: #222;
+}
+a:focus {
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #222;
+}
+p {
+  margin: 0;
+}
 .App {
   text-align: center;
   height: 100%;

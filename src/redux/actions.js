@@ -24,3 +24,11 @@ export const removeRoomSubscription = (roomId) => ({
   type: AT.REMOVE_SUBSCRIPTION,
   roomId,
 });
+export const setSearchTerm = (searchTerm) => ({
+  type: AT.SET_SEARCH_TERM,
+  searchTerm,
+});
+export const setPost = (currentPost) => ({
+  type: AT.SET_POST,
+  currentPost,
+});

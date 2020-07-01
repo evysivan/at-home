@@ -13,6 +13,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import TextField from "@material-ui/core/TextField";
 
@@ -21,9 +22,6 @@ const StyledHeader = styled.div`
   min-height: 10%;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: inset 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: inset 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -86,14 +84,14 @@ const MainPanelHeader = () => {
             style={{ margin: 5 }}
             variant="outlined"
             color="default"
-            startIcon={<WhatshotIcon />}
+            startIcon={<ThumbUpIcon />}
             className={cx(buttonClicked === 1 ? "btn-clicked" : "")}
             onClick={() => {
               dispatch(setSortCriteria("Hot"));
               setButtonClicked(1);
             }}
           >
-            Hot
+            Helpful
           </Button>
           <Button
             style={{ margin: 5 }}

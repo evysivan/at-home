@@ -53,3 +53,6 @@ export const getAllSubscribedRoomThreads = (state) => {
     (thread) => thread.room.roomId === state.currentRoom
   );
 };
+export const getSearchTerm = (state) => state.searchTerm;
+export const getCurrentPost = (state) => state.currentPost;
+export const getAllComments = (state) => state.comments;

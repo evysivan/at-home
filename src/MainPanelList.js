@@ -11,12 +11,13 @@ import {
 const StyledContainer = styled.div`
   box-sizing: border-box;
   margin: 10px;
+  height: 90%;
+  overflow: auto;
 `;
 
 const MainPanelList = ({ room }) => {
   const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
   const allThreads = useSelector(getAllRoomThreads);
-  console.log(room);
 
   const threads = room ? allThreads : subscribedThreads;
 

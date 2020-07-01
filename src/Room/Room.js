@@ -8,7 +8,7 @@ function Room(props) {
   const room = useSelector(getCurrentRoomDetails);
 
   return (
-    <div style={{ flex: 1 }}>
+    <div style={{ flex: 0.8, overflow: "hidden" }}>
       <RoomHeader title={room.title} id={room.id} />
       <MainPanelList room={true} />
     </div>

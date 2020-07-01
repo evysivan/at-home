@@ -25,7 +25,6 @@ const SidePanelList = () => {
       {subscribedRooms.map((room) => (
         <>
           <SidePanelListItem room={room} />
-          <Divider className="side-list-divider" />
         </>
       ))}
     </StyledList>
