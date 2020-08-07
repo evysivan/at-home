@@ -1,19 +1,13 @@
 import React from "react";
+import "./mainPanel.css";
 import styled from "styled-components";
-import MainPanelThread from "./MainPanelThread";
+import Post from "../Post/Post";
 import Divider from "@material-ui/core/Divider";
 import { useSelector } from "react-redux";
 import {
   getAllSubscribedRoomThreads,
   getAllRoomThreads,
-} from "./redux/selectors";
-
-const StyledContainer = styled.div`
-  box-sizing: border-box;
-  margin: 10px;
-  height: 90%;
-  overflow: auto;
-`;
+} from "../../redux/selectors";
 
 const MainPanelList = ({ room }) => {
   const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
@@ -22,14 +16,14 @@ const MainPanelList = ({ room }) => {
   const threads = room ? allThreads : subscribedThreads;
 
   return (
-    <StyledContainer>
+    <div className="MainPanelList_StyledContainer">
       {threads.map((item) => (
         <div key={item.id}>
-          <MainPanelThread item={item} />
+          <Post item={item} />
           <Divider />
         </div>
       ))}
-    </StyledContainer>
+    </div>
   );
 };
 

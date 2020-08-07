@@ -1,24 +1,11 @@
 import React from "react";
+import "./room.css";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllSubscribedRooms } from "../redux/selectors";
-import { addRoomSubscription, removeRoomSubscription } from "../redux/actions";
-
-const StyledRoomHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
-  width: 100%;
-  min-height: 50px;
-  padding: 10px;
-  box-sizing: border-box;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-`;
+import { getAllSubscribedRooms } from "../../redux/selectors";
+import { addRoomSubscription, removeRoomSubscription } from "../../redux/actions";
 
 function RoomHeader({ title, id }) {
   const subscriptions = useSelector(getAllSubscribedRooms);
@@ -27,7 +14,7 @@ function RoomHeader({ title, id }) {
   const isRoomSubscribed = subscriptions.includes(id);
 
   return (
-    <StyledRoomHeader>
+    <div className="StyledRoomHeader">
       <h1>{title}</h1>
       <Button
         style={{ margin: 5 }}
@@ -43,7 +30,7 @@ function RoomHeader({ title, id }) {
       >
         {isRoomSubscribed ? "Unsubscribe" : "Subscribe"}
       </Button>
-    </StyledRoomHeader>
+    </div>
   );
 }
 

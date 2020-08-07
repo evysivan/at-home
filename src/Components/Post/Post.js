@@ -1,100 +1,26 @@
 import React from "react";
+import "./post.css";
 import styled from "styled-components";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import { useDispatch } from "react-redux";
-import { voteUp, voteDown, setPost } from "./redux/actions";
+import { voteUp, voteDown, setPost } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import helped1 from "./assets/helped/helped1.png";
+import helped1 from "../../assets/helped/helped1.png";
 import HelpIcon from "@material-ui/icons/Help";
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const StyledItem = styled.div`
-  background-color: rgba(255, 255, 255, 1);
-  min-height: 100px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin: 20px 0;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  width: ${(props) => props.width || "100%"};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const StyledItemBla = styled.div`
-  background-color: rgba(255, 255, 255, 1);
-  min-height: 100px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin: 20px 0;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  width: "20%";
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-`;
-
-const StyledItemRight = styled.div`
-  background-color: rgba(255, 255, 255, 1);
-  min-height: 100px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin: 20px 0;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-left: 10px;
-`;
-
-const StyledSpan = styled.span`
-  color: rgba(0, 0, 0, 0.6);
-  margin-right: 10px;
-`;
-
-const BodyContainer = styled.div`
-  background-color: rgba(255, 255, 255, 0.8);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  border-radius: 10px;
-  padding: 5px;
-  height: 30%;
-  width: 100%;
-  direction: rtl;
-`;
-
-const MainPanelThread = ({ item, style }) => {
+const Post = ({ item, style }) => {
   const dispatch = useDispatch();
 
   return (
-    <StyledContainer>
-      <StyledItemBla width={20}>
+    <div className="Post_StyledContainer">
+      <div className="Post_StyledItemBla" width={20}>
         {item.thumbnail && (
           <img
             className="thread-thumbnail"
@@ -104,8 +30,8 @@ const MainPanelThread = ({ item, style }) => {
             alt="thumbnail"
           />
         )}
-      </StyledItemBla>
-      <StyledItem width={style ? style.width : "100%"}>
+      </div>
+      <div className="Post_StyledItem" style={{ width: style ? style.width : "100%" }}>
         <div style={{ width: "100%" }}>
           <div
             style={{
@@ -115,7 +41,7 @@ const MainPanelThread = ({ item, style }) => {
             }}
           >
             <p>
-              <StyledSpan>User: </StyledSpan>
+              <span className="Post_StyledSpan">User: </span>
               <span style={{ textDecoration: "underline", marginRight: 10 }}>
                 {item.details.by}
               </span>
@@ -165,18 +91,18 @@ const MainPanelThread = ({ item, style }) => {
               </h2>
             </Link>
             <div>
-              <StyledSpan>Room: </StyledSpan>
+              <span className="Post_StyledSpan">Room: </span>
               <span style={{ textDecoration: "underline" }}>
                 {item.room.title}
               </span>
             </div>
           </div>
-          <BodyContainer>
+          <div className="Post_BodyContainer">
             {typeof item.details.body === "string" ? (
               <p>{item.details.body}</p>
             ) : (
-              item.details.body
-            )}
+                item.details.body
+              )}
             {item.details.image && (
               <img
                 className="thread-image"
@@ -184,7 +110,7 @@ const MainPanelThread = ({ item, style }) => {
                 alt="image"
               />
             )}
-          </BodyContainer>
+          </div>
           <div
             style={{
               width: "100%",
@@ -252,8 +178,8 @@ const MainPanelThread = ({ item, style }) => {
             </Link>
           </div>
         </div>
-      </StyledItem>
-      <StyledItemRight width={20}>
+      </div>
+      <div className="Post_StyledItemRight" width={20}>
         <div
           style={{
             display: "flex",
@@ -302,9 +228,9 @@ const MainPanelThread = ({ item, style }) => {
             <ArrowDropDownIcon />
           </IconButton>
         </div> */}
-      </StyledItemRight>
-    </StyledContainer>
+      </div>
+    </div>
   );
 };
 
-export default MainPanelThread;
+export default Post;

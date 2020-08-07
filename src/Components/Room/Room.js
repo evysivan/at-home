@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import RoomHeader from "./RoomHeader";
-import { getCurrentRoomDetails } from "../redux/selectors";
-import MainPanelList from "../MainPanelList";
+import { getCurrentRoomDetails } from "../../redux/selectors";
+import MainPanelList from "../MainPanel/MainPanelList";
 
 function Room(props) {
   const room = useSelector(getCurrentRoomDetails);

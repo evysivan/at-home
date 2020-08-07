@@ -1,16 +1,10 @@
 import React from "react";
+import "./sidePanel.css";
 import styled from "styled-components";
 import SidePanelListItem from "./SidePanelListItem";
 import { useSelector } from "react-redux";
-import { getAllSubscribedRooms, getAllRooms } from "./redux/selectors";
+import { getAllSubscribedRooms, getAllRooms } from "../../redux/selectors";
 import Divider from "@material-ui/core/Divider";
-
-const StyledList = styled.ul`
-  padding: 0;
-  list-style: none;
-  list-style-type: none;
-  box-sizing: border-box;
-`;
 
 const SidePanelList = () => {
   const subscriptions = useSelector(getAllSubscribedRooms);
@@ -21,13 +15,13 @@ const SidePanelList = () => {
   );
 
   return (
-    <StyledList>
+    <div className="StyledList">
       {subscribedRooms.map((room) => (
         <>
           <SidePanelListItem room={room} />
         </>
       ))}
-    </StyledList>
+    </div>
   );
 };
 

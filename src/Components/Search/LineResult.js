@@ -2,12 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllSubscribedRooms } from "../redux/selectors";
+import { getAllSubscribedRooms } from "../../redux/selectors";
 import {
   addRoomSubscription,
   removeRoomSubscription,
   setRoom,
-} from "../redux/actions";
+} from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 function LineResult({ room }) {

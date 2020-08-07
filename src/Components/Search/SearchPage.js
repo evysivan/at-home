@@ -5,20 +5,20 @@ import {
   getAllRooms,
   getAllThreads,
   getAllComments,
-} from "../redux/selectors";
-import jpg from "../assets/file types/jpg.png";
-import pdf from "../assets/file types/pdf.png";
-import powerpoint from "../assets/file types/powerpoint.png";
-import xls from "../assets/file types/xls.png";
-import txt from "../assets/file types/txt.png";
-import link from "../assets/file types/link.png";
+} from "../../redux/selectors";
+import jpg from "../../assets/file types/jpg.png";
+import pdf from "../../assets/file types/pdf.png";
+import powerpoint from "../../assets/file types/powerpoint.png";
+import xls from "../../assets/file types/xls.png";
+import txt from "../../assets/file types/txt.png";
+import link from "../../assets/file types/link.png";
 import LineResult from "./LineResult";
-import SidePanelListItem from "../SidePanelListItem";
+import SidePanelListItem from "../SidePanel/SidePanelListItem";
 import FileResult from "./FileResult";
-import MainPanelThread from "../MainPanelThread";
+import Post from "../Post/Post";
 import Comment from "../Post/Comment";
 
-function Search(props) {
+function SearchPage(props) {
   const searchTerm = useSelector(getSearchTerm);
   const rooms = useSelector(getAllRooms);
   const threads = useSelector(getAllThreads);
@@ -126,7 +126,7 @@ function Search(props) {
                 }}
               >
                 {filteredThreads.map((thread) => (
-                  <MainPanelThread
+                  <Post
                     item={thread}
                     style={{ width: "100%", fontSize: 18 }}
                   />
@@ -220,4 +220,4 @@ function Search(props) {
   );
 }
 
-export default Search;
+export default SearchPage;
