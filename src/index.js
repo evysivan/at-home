@@ -5,6 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import * as fbModules from "./api/firebaseAPI";
+
+require("dotenv").config();
 
 ReactDOM.render(
   <Provider store={store}>
