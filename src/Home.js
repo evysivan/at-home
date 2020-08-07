@@ -9,7 +9,13 @@ import bg3 from "./assets/3.png";
 import Room from "./Room/Room";
 import Search from "./Search/Search";
 import Post from "./Post/Post";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import AuthContainer from "./Authentication/AuthContainer";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 const StyledHome = styled.div`
   height: 100%;
@@ -36,7 +42,6 @@ const StyledHome = styled.div`
     #1f4037,
     #99f2c8 */
   /* ); harvey green gradient */
-  
 `;
 
 const StyledContainer = styled.div`
@@ -49,30 +54,64 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
+const StyledParentContainer = styled.div`
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  width: 100vw;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+const isUserAuthenticated = true;
+
+const PrivateRoute = ({ children, ...rest }) => (
+  <Route
+    {...rest}
+    render={({ location }) =>
+      isUserAuthenticated ? (
+        children
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/auth",
+            state: { from: location },
+          }}
+        />
+      )
+    }
+  />
+);
 
 function Home() {
   return (
     <Router>
       <StyledHome>
-        <TopPanel />
-        <StyledContainer>
-          <Switch>
-            <Route path="/room">
-              <SidePanel />
-              <Room />
-            </Route>
-            <Route path="/" exact>
-              <SidePanel />
-              <MainPanel />
-            </Route>
-            <Route path="/search" exact>
-              <Search />
-            </Route>
-            <Route path="/post" exact>
-              <Post />
-            </Route>
-          </Switch>
-        </StyledContainer>
+        <Switch>
+          <Route path="/auth">
+            <AuthContainer />
+          </Route>
+          <StyledParentContainer>
+            <TopPanel />
+            <StyledContainer>
+              <PrivateRoute path="/" exact>
+                <SidePanel />
+                <MainPanel />
+              </PrivateRoute>
+              <PrivateRoute path="/room">
+                <SidePanel />
+                <Room />
+              </PrivateRoute>
+              <PrivateRoute path="/search">
+                <Search />
+              </PrivateRoute>
+              <PrivateRoute path="/post" exact>
+                <Post />
+              </PrivateRoute>
+            </StyledContainer>
+          </StyledParentContainer>
+        </Switch>
       </StyledHome>
     </Router>
   );
