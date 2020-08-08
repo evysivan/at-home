@@ -1,12 +1,11 @@
 import React from "react";
 import "../../App.css";
-import './home.css';
-import TopPanel from "./TopPanel";
+import "./home.css";
+import { useSelector } from "react-redux";
+import { getUser } from "../../redux/selectors";
+import TopPanel from "../TopPanel/TopPanel";
 import SidePanel from "../SidePanel/SidePanel";
 import MainPanel from "../MainPanel/MainPanel";
-import styled from "styled-components";
-import bg2 from "../../assets/2.jpg";
-import bg3 from "../../assets/3.png";
 import Room from "../Room/Room";
 import SearchPage from "../Search/SearchPage";
 import PostPage from "../Post/PostPage";
@@ -17,17 +16,17 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { StylesProvider } from "@material-ui/core";
 
-const isUserAuthenticated = true;
+const PrivateRoute = ({ children, ...rest }) => {
+  const user = useSelector(getUser);
 
-const PrivateRoute = ({ children, ...rest }) => (
-  <Route
-    {...rest}
-    render={({ location }) =>
-      isUserAuthenticated ? (
-        children
-      ) : (
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        user ? (
+          children
+        ) : (
           <Redirect
             to={{
               pathname: "/auth",
@@ -35,12 +34,12 @@ const PrivateRoute = ({ children, ...rest }) => (
             }}
           />
         )
-    }
-  />
-);
+      }
+    />
+  );
+};
 
 function Home() {
-  //test
   return (
     <Router>
       <div className="StyledHome">
@@ -48,25 +47,40 @@ function Home() {
           <Route path="/auth">
             <AuthContainer />
           </Route>
-          <div className="StyledParentContainer">
-            <TopPanel />
-            <div className="Home_StyledContainer">
-              <PrivateRoute path="/" exact>
+          <PrivateRoute path="/" exact>
+            <div className="StyledParentContainer">
+              <TopPanel />
+              <div className="Home_StyledContainer">
                 <SidePanel />
                 <MainPanel />
-              </PrivateRoute>
-              <PrivateRoute path="/room">
+              </div>
+            </div>
+          </PrivateRoute>
+          <PrivateRoute path="/room">
+            <div className="StyledParentContainer">
+              <TopPanel />
+              <div className="Home_StyledContainer">
                 <SidePanel />
                 <Room />
-              </PrivateRoute>
-              <PrivateRoute path="/search">
-                <SearchPage />
-              </PrivateRoute>
-              <PrivateRoute path="/post" exact>
-                <PostPage />
-              </PrivateRoute>
+              </div>
             </div>
-          </div>
+          </PrivateRoute>
+          <PrivateRoute path="/search">
+            <div className="StyledParentContainer">
+              <TopPanel />
+              <div className="Home_StyledContainer">
+                <SearchPage />
+              </div>
+            </div>
+          </PrivateRoute>
+          <PrivateRoute path="/post" exact>
+            <div className="StyledParentContainer">
+              <TopPanel />
+              <div className="Home_StyledContainer">
+                <PostPage />
+              </div>
+            </div>
+          </PrivateRoute>
         </Switch>
       </div>
     </Router>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./auth.styles";
 
 import Login from "./Login";
 import Register from "./Register";
@@ -22,7 +21,7 @@ function AuthContainer(props) {
       }}
     >
       {showRegister ? (
-        <Register />
+        <Register setShowRegister={setShowRegister} />
       ) : (
         <Login setShowRegister={setShowRegister} />
       )}

@@ -5,7 +5,7 @@ import mockComments from "../mockComments";
 import _ from "lodash";
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   currentRoom: "",
   currentPost: "",
   rooms: mockRooms,
@@ -14,10 +14,16 @@ const initialState = {
   threadsSort: "Hot",
   subscribedRooms: [],
   searchTerm: "",
+  user: null,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case AT.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      };
     case AT.SET_ROOM:
       return {
         ...state,
@@ -78,6 +84,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPost: action.currentPost,
+      };
+    case AT.SET_USER:
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

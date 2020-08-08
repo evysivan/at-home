@@ -32,3 +32,11 @@ export const setPost = (currentPost) => ({
   type: AT.SET_POST,
   currentPost,
 });
+export const setUser = (user) => ({
+  type: AT.SET_USER,
+  user,
+});
+export const setLoading = (isLoading) => ({
+  type: AT.SET_LOADING,
+  isLoading,
+});
