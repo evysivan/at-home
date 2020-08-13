@@ -1,6 +1,10 @@
 #root {
   height: 100%;
 }
+body {
+  font-family: "Nunito", sans-serif;
+  font-family: "Quattrocento Sans", sans-serif;
+}
 .MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu {
   display: flex;
   flex-direction: row;
@@ -8,6 +12,10 @@
 a {
   text-decoration: none;
   color: black;
+}
+.MuiButton-root {
+  text-transform: none !important;
+  background-color: white !important;
 }
 
 a:visited {
@@ -41,7 +49,7 @@ h5 {
   margin: 0;
 }
 .logo {
-  height: 8vmin;
+  height: 15vmin;
 }
 .MuiFormControl-root.MuiTextField-root {
   margin-left: 20px;
@@ -60,7 +68,7 @@ h5 {
   padding: 0 !important;
 }
 .thread-image {
-  max-height: 500px;
+  max-height: 150px;
   align-self: center;
 }
 .MuiButton-startIcon {

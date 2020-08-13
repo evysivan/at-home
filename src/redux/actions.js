@@ -4,13 +4,13 @@ export const setRoom = (room) => ({
   type: AT.SET_ROOM,
   payload: room,
 });
-export const voteUp = (threadId) => ({
+export const voteUp = (postId) => ({
   type: AT.VOTE_UP,
-  payload: threadId,
+  payload: postId,
 });
-export const voteDown = (threadId) => ({
+export const voteDown = (postId) => ({
   type: AT.VOTE_DOWN,
-  payload: threadId,
+  payload: postId,
 });
 export const setSortCriteria = (criteria) => ({
   type: AT.SORT_THREADS_CRITERIA,
@@ -39,4 +39,18 @@ export const setUser = (user) => ({
 export const setLoading = (isLoading) => ({
   type: AT.SET_LOADING,
   isLoading,
+});
+
+//**=======DB=======*/
+export const dbSetRooms = (rooms) => ({
+  type: AT.DB_SET_ROOMS,
+  rooms,
+});
+export const dbSetPosts = (posts) => ({
+  type: AT.DB_SET_POSTS,
+  posts,
+});
+export const dbSetComments = (comments) => ({
+  type: AT.DB_SET_COMMENTS,
+  comments,
 });

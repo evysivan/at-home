@@ -26,6 +26,8 @@
 }
 
 .Home_StyledContainer {
+  display: flex;
+  flex-direction: row;
   position: relative;
   overflow: auto;
   height: 100%;

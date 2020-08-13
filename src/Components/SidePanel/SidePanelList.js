@@ -1,5 +1,5 @@
 import React from "react";
-import "./sidePanel.css";
+import styles from "./sidePanel.module.css";
 import styled from "styled-components";
 import SidePanelListItem from "./SidePanelListItem";
 import { useSelector } from "react-redux";
@@ -15,11 +15,9 @@ const SidePanelList = () => {
   );
 
   return (
-    <div className="StyledList">
-      {subscribedRooms.map((room) => (
-        <>
-          <SidePanelListItem room={room} />
-        </>
+    <div className={styles.StyledList}>
+      {subscribedRooms.map((room, index) => (
+        <SidePanelListItem key={`${room}_${index}`} room={room} />
       ))}
     </div>
   );

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../App.css";
 import "./home.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../redux/selectors";
 import TopPanel from "../TopPanel/TopPanel";
 import SidePanel from "../SidePanel/SidePanel";
@@ -16,9 +16,13 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { dbSetRooms, dbSetPosts, dbSetComments } from "../../redux/actions";
+
+import { getCollectionDB } from "../../api/firebaseAPI";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const user = useSelector(getUser);
+  const dispatch = useDispatch();
 
   return (
     <Route
@@ -49,19 +53,23 @@ function Home() {
           </Route>
           <PrivateRoute path="/" exact>
             <div className="StyledParentContainer">
-              <TopPanel />
               <div className="Home_StyledContainer">
                 <SidePanel />
-                <MainPanel />
+                <div style={{ flex: 0.8 }}>
+                  <TopPanel withSidePanel={true} />
+                  <MainPanel />
+                </div>
               </div>
             </div>
           </PrivateRoute>
           <PrivateRoute path="/room">
             <div className="StyledParentContainer">
-              <TopPanel />
               <div className="Home_StyledContainer">
                 <SidePanel />
-                <Room />
+                <div style={{ flex: 0.8 }}>
+                  <TopPanel withSidePanel={true} />
+                  <Room />
+                </div>
               </div>
             </div>
           </PrivateRoute>

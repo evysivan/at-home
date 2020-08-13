@@ -26,7 +26,7 @@ function SearchPage(props) {
 
   const filteredThreads = threads.filter(
     (thread) =>
-      thread.details.title.includes(searchTerm) ||
+      thread.title.includes(searchTerm) ||
       thread.room.title.includes(searchTerm)
   );
   const filteredRooms = rooms.filter(
@@ -126,10 +126,7 @@ function SearchPage(props) {
                 }}
               >
                 {filteredThreads.map((thread) => (
-                  <Post
-                    item={thread}
-                    style={{ width: "100%", fontSize: 18 }}
-                  />
+                  <Post item={thread} style={{ width: "100%", fontSize: 18 }} />
                 ))}
               </div>
             </div>
@@ -209,7 +206,7 @@ function SearchPage(props) {
                 }}
               >
                 {filteredComments.map((comment) => (
-                  <Comment comment={comment.comment} user={comment.user} />
+                  <Comment comment={comment.content} user={comment.author} />
                 ))}
               </div>
             </div>

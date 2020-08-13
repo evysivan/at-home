@@ -16,9 +16,7 @@ export const getAllSubscribedRoomThreads = (state) => {
   if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
     threads = threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
   } else if (state.threadsSort === "Latest") {
-    threads = threads.sort((a, b) =>
-      a.details.time > b.details.time ? 1 : -1
-    );
+    threads = threads.sort((a, b) => (a.time > b.time ? 1 : -1));
   }
 
   const subscribedThreads = threads.filter((thread) =>
@@ -34,9 +32,7 @@ export const getSortedThreads = (state) => {
   if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
     return state.threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
   } else if (state.threadsSort === "Latest") {
-    return state.threads.sort((a, b) =>
-      a.details.time > b.details.time ? -1 : 1
-    );
+    return state.threads.sort((a, b) => (a.time > b.time ? -1 : 1));
   }
   return state.threads;
 };
@@ -47,9 +43,7 @@ export const getAllRoomThreads = (state) => {
   if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
     threads = threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
   } else if (state.threadsSort === "Latest") {
-    threads = threads.sort((a, b) =>
-      a.details.time > b.details.time ? 1 : -1
-    );
+    threads = threads.sort((a, b) => (a.time > b.time ? 1 : -1));
   }
   if (state.currentRoom === "") return threads;
   return threads.filter((thread) => thread.room.roomId === state.currentRoom);

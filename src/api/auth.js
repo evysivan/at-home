@@ -1,12 +1,12 @@
 import { auth } from "./firebaseAPI";
 
-// Login
-export const Login = (initialize) => {
-  auth.onAuthStateChanged((user) => {
+// // Login
+export const Login = (initializeUser) => {
+  return auth.onAuthStateChanged((user) => {
     if (user) {
-      initialize(user);
+      initializeUser(user);
     } else {
-      initialize(null);
+      initializeUser(null);
     }
   });
 };

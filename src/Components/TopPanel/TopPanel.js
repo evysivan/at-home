@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import PersonIcon from "@material-ui/icons/Person";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Link } from "react-router-dom";
+
 import logo from "../../assets/logob.png";
 import { setRoom } from "../../redux/actions";
 import SearchPanel from "../Search/SearchPanel";
@@ -13,14 +14,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import UserMenu from "./UserMenu";
 
-function TopPanel() {
+function TopPanel({ withSidePanel }) {
   const dispatch = useDispatch();
 
   return (
     <div className="StyledTopPanel">
-      <Link to="/" onClick={() => dispatch(setRoom(""))}>
-        <img src={logo} className="logo StyledImage" alt="logo" />
-      </Link>
+      {withSidePanel ? null : (
+        <Link to="/" onClick={() => dispatch(setRoom(""))}>
+          <img src={logo} className="logo StyledImage" alt="logo" />
+        </Link>
+      )}
       <SearchPanel />
       <div className="TopPanel_IconsContainer">
         <IconButton color="default" aria-label="">

@@ -8,3 +8,8 @@ export const SET_SEARCH_TERM = "SET_SEARCH_TERM";
 export const SET_POST = "SET_POST";
 export const SET_USER = "SET_USER";
 export const SET_LOADING = "SET_LOADING";
+
+//**=======DB=======*/
+export const DB_SET_ROOMS = "DB_SET_ROOMS";
+export const DB_SET_POSTS = "DB_SET_POSTS";
+export const DB_SET_COMMENTS = "DB_SET_COMMENTS";

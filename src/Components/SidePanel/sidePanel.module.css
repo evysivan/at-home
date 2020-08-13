@@ -1,0 +1,59 @@
+.StyledSidePanel {
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  flex: 0.2;
+}
+
+.SidePanel_StyledContainer {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.SidePanelHeader_StyledHeader {
+  display: inline-block;
+  width: 100%;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+  color: gray;
+  padding: 20px;
+}
+
+.StyledList {
+  padding: 0;
+  list-style: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+.SidePanelListItem_LiContainer {
+  color: rgba(0, 0, 0, 0.6);
+  /* direction: rtl; */
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.SidePanelListItem_Container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #858ce0;
+  border-radius: 5px;
+}
+
+.SidePanel_HomeLogoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

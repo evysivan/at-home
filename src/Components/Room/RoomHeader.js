@@ -1,11 +1,13 @@
 import React from "react";
-import "./room.css";
-import styled from "styled-components";
+import styles from "./room.module.css";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSubscribedRooms } from "../../redux/selectors";
-import { addRoomSubscription, removeRoomSubscription } from "../../redux/actions";
+import {
+  addRoomSubscription,
+  removeRoomSubscription,
+} from "../../redux/actions";
 
 function RoomHeader({ title, id }) {
   const subscriptions = useSelector(getAllSubscribedRooms);
@@ -14,11 +16,11 @@ function RoomHeader({ title, id }) {
   const isRoomSubscribed = subscriptions.includes(id);
 
   return (
-    <div className="StyledRoomHeader">
-      <h1>{title}</h1>
+    <div className={styles.StyledRoomHeader}>
+      <h1 className={styles.RoomHeader_Title}>{title}</h1>
       <Button
-        style={{ margin: 5 }}
-        variant="outlined"
+        className={styles.RoomHeader_Button}
+        variant="contained"
         color="default"
         startIcon={<AddIcon />}
         onClick={() => {

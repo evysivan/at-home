@@ -8,9 +8,9 @@ const initialState = {
   isLoading: true,
   currentRoom: "",
   currentPost: "",
-  rooms: mockRooms,
-  threads: mockThreads,
-  comments: mockComments,
+  rooms: [],
+  threads: [],
+  comments: [],
   threadsSort: "Hot",
   subscribedRooms: [],
   searchTerm: "",
@@ -89,6 +89,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case AT.DB_SET_ROOMS:
+      return {
+        ...state,
+        rooms: action.rooms,
+      };
+    case AT.DB_SET_POSTS:
+      return {
+        ...state,
+        threads: action.posts,
+      };
+    case AT.DB_SET_COMMENTS:
+      return {
+        ...state,
+        comments: action.comments,
       };
     default:
       return state;

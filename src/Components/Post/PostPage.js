@@ -1,5 +1,5 @@
 import React from "react";
-import "./post.css";
+import styles from "./post.module.css";
 import { useSelector } from "react-redux";
 import {
   getCurrentPost,
@@ -15,27 +15,25 @@ function PostPage() {
   const comments = useSelector(getAllComments);
 
   const relevantComments = comments.filter(
-    (comment) => comment.threadId === postId
+    (comment) => comment.postId === postId
   );
   const currentThread = threads.filter((thread) => thread.id === postId)[0];
 
   return (
-    <div className="PostPage_container">
-      {currentThread && postId && (
-        <Post item={currentThread} style={{ width: "80%" }} />
-      )}
-      <div style={{ width: "40%" }}>
+    <div className={styles.PostPage_container}>
+      {currentThread && postId && <Post item={currentThread} />}
+      <div className={styles.PostPage_CommentContainer}>
         {relevantComments ? (
           relevantComments.map((comment) => (
             <Comment
-              comment={comment.comment}
-              user={comment.user}
+              comment={comment.content}
+              user={comment.author.name}
               indent={comment.indent}
             />
           ))
         ) : (
-            <p>No comments yet...</p>
-          )}
+          <p>No comments yet...</p>
+        )}
       </div>
     </div>
   );
