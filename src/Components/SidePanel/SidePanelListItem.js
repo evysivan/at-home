@@ -27,15 +27,15 @@ const SidePanelListItem = ({ room }) => {
       >
         <div className={styles.SidePanelListItem_Container}>
           <Button
-            style={{ width: "100%" }}
+            className={styles.SidePanelListItem_Button}
             onClick={() => {
               dispatch(setRoom(room.id));
             }}
           >
-            <p>{room.title}</p>
+            {room.title}
           </Button>
           <IconButton aria-label="delete" size="small">
-            <MoreVertIcon fontSize="inherit" />
+            <MoreVertIcon style={{ color: "white" }} fontSize="inherit" />
           </IconButton>
         </div>
       </li>

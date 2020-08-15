@@ -21,16 +21,25 @@ function PostSelect({ item }) {
         style={{ display: "flex", alignItems: "center" }}
         onClick={() => dispatch(voteUp(item.id))}
       >
-        <HelpOutlineIcon />
-        <ListItemText primary="This helped" style={{ margin: "8px" }} />
+        <HelpOutlineIcon className={styles.PostSelect_ItemIcons} />
+        <ListItemText
+          primary="This helped"
+          className={styles.PostSelect_SelectItem}
+        />
       </MenuItem>
       <MenuItem value={2}>
-        <CachedIcon />
-        <ListItemText primary="Comprehensive" style={{ margin: "8px" }} />
+        <CachedIcon className={styles.PostSelect_ItemIcons} />
+        <ListItemText
+          primary="Comprehensive"
+          className={styles.PostSelect_SelectItem}
+        />
       </MenuItem>
       <MenuItem value={3}>
-        <DetailsIcon />
-        <ListItemText primary="Detailed" style={{ margin: "8px" }} />
+        <DetailsIcon className={styles.PostSelect_ItemIcons} />
+        <ListItemText
+          primary="Detailed"
+          className={styles.PostSelect_SelectItem}
+        />
       </MenuItem>
     </Select>
   );

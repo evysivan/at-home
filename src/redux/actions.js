@@ -42,15 +42,15 @@ export const setLoading = (isLoading) => ({
 });
 
 //**=======DB=======*/
-export const dbSetRooms = (rooms) => ({
-  type: AT.DB_SET_ROOMS,
+export const dbAddRooms = (rooms) => ({
+  type: AT.DB_ADD_ROOMS,
   rooms,
 });
-export const dbSetPosts = (posts) => ({
-  type: AT.DB_SET_POSTS,
+export const dbAddPosts = (posts) => ({
+  type: AT.DB_ADD_POSTS,
   posts,
 });
-export const dbSetComments = (comments) => ({
-  type: AT.DB_SET_COMMENTS,
+export const dbAddComments = (comments) => ({
+  type: AT.DB_ADD_COMMENTS,
   comments,
 });

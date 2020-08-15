@@ -1,13 +1,13 @@
 import React from "react";
 import "../../App.css";
-import "./mainPanel.css";
+import styles from "./mainPanel.module.css";
 import styled from "styled-components";
 import MainPanelHeader from "./MainPanelHeader";
 import MainPanelList from "./MainPanelList";
 
 function MainPanel() {
   return (
-    <div className="StyledMainPanel">
+    <div className={styles.StyledMainPanel}>
       <MainPanelHeader />
       <MainPanelList />
     </div>

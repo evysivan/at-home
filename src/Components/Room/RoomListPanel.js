@@ -1,29 +1,28 @@
 import React from "react";
-import styles from "./mainPanel.module.css";
-import styled from "styled-components";
+import styles from "./room.module.css";
 import Post from "../Post/Post";
-import Divider from "@material-ui/core/Divider";
 import { useSelector } from "react-redux";
 import {
   getAllSubscribedRoomThreads,
   getAllRoomThreads,
+  getCurrentRoom,
 } from "../../redux/selectors";
+import AddPostPanel from "./AddPostPanel";
 
-const MainPanelList = ({ room }) => {
+const RoomListPanel = ({ room }) => {
   const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
   const allThreads = useSelector(getAllRoomThreads);
 
   const threads = room ? allThreads : subscribedThreads;
 
   return (
-    <div className={styles.MainPanelList_StyledContainer}>
+    <div className={styles.Room_RoomListPanel}>
+      <AddPostPanel />
       {threads.map((item) => (
-        <div key={item.id}>
-          <Post item={item} />
-        </div>
+        <Post item={item} key={item.id} />
       ))}
     </div>
   );
 };
 
-export default MainPanelList;
+export default RoomListPanel;

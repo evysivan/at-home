@@ -1,0 +1,51 @@
+.StyledMainPanel {
+  box-sizing: border-box;
+  flex: 0.8;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.MainPanelHeader_StyledHeader {
+  display: flex;
+  min-height: 10%;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #fff;
+  color: gray;
+  border-radius: 5px;
+}
+
+.MainPanelHeader_Container {
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.MainPanelList_StyledContainer {
+  box-sizing: border-box;
+  margin: 10px;
+  height: 90%;
+  overflow: auto;
+}
+
+.MainPanelHeader_ButtonClicked {
+  /* background-color: var(--color); */
+  background: linear-gradient(
+    176deg,
+    rgb(129, 135, 212),
+    rgba(108, 113, 190, 0.8)
+  ) !important;
+  color: white !important;
+  border-color: rgb(129, 135, 212) !important;
+}

@@ -2,10 +2,12 @@
   box-sizing: border-box;
   position: relative;
   height: 100%;
-  flex: 0.2;
+  flex: 0.15;
 }
 
 .SidePanel_StyledContainer {
+  padding: 20px;
+  box-sizing: border-box;
   background-color: #fff;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
@@ -14,19 +16,16 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .SidePanelHeader_StyledHeader {
-  display: inline-block;
-  width: 100%;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
   box-sizing: border-box;
+  font-size: 18px;
+  margin-top: 20px;
   color: gray;
-  padding: 20px;
+  text-transform: uppercase;
 }
 
 .StyledList {
@@ -34,6 +33,7 @@
   list-style: none;
   list-style-type: none;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .SidePanelListItem_LiContainer {
@@ -48,12 +48,33 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #858ce0;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    176deg,
+    rgba(131, 137, 207, 1) 0%,
+    rgba(133, 140, 224, 1) 11%,
+    rgba(124, 131, 212, 1) 30%,
+    rgba(74, 79, 139, 0.8) 150%
+  );
   border-radius: 5px;
+}
+
+.SidePanelListItem_Button {
+  color: white !important;
 }
 
 .SidePanel_HomeLogoContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.SidePanel_Shortcuts {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }

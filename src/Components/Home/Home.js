@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../App.css";
-import "./home.css";
+import styles from "./home.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../redux/selectors";
 import TopPanel from "../TopPanel/TopPanel";
@@ -19,6 +19,7 @@ import {
 import { dbSetRooms, dbSetPosts, dbSetComments } from "../../redux/actions";
 
 import { getCollectionDB } from "../../api/firebaseAPI";
+import { StylesContext } from "@material-ui/styles";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const user = useSelector(getUser);
@@ -46,16 +47,16 @@ const PrivateRoute = ({ children, ...rest }) => {
 function Home() {
   return (
     <Router>
-      <div className="StyledHome">
+      <div className={styles.StyledHome}>
         <Switch>
           <Route path="/auth">
             <AuthContainer />
           </Route>
           <PrivateRoute path="/" exact>
-            <div className="StyledParentContainer">
-              <div className="Home_StyledContainer">
+            <div className={styles.StyledParentContainer}>
+              <div className={styles.Home_StyledContainer}>
                 <SidePanel />
-                <div style={{ flex: 0.8 }}>
+                <div className={styles.Home_Container}>
                   <TopPanel withSidePanel={true} />
                   <MainPanel />
                 </div>
@@ -63,10 +64,10 @@ function Home() {
             </div>
           </PrivateRoute>
           <PrivateRoute path="/room">
-            <div className="StyledParentContainer">
-              <div className="Home_StyledContainer">
+            <div className={styles.StyledParentContainer}>
+              <div className={styles.Home_StyledContainer}>
                 <SidePanel />
-                <div style={{ flex: 0.8 }}>
+                <div className={styles.Home_Container}>
                   <TopPanel withSidePanel={true} />
                   <Room />
                 </div>
@@ -74,17 +75,17 @@ function Home() {
             </div>
           </PrivateRoute>
           <PrivateRoute path="/search">
-            <div className="StyledParentContainer">
+            <div className={styles.StyledParentContainer}>
               <TopPanel />
-              <div className="Home_StyledContainer">
+              <div className={styles.Home_StyledContainer}>
                 <SearchPage />
               </div>
             </div>
           </PrivateRoute>
           <PrivateRoute path="/post" exact>
-            <div className="StyledParentContainer">
+            <div className={styles.StyledParentContainer}>
               <TopPanel />
-              <div className="Home_StyledContainer">
+              <div className={styles.Home_StyledContainer}>
                 <PostPage />
               </div>
             </div>

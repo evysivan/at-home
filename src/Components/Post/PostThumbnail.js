@@ -6,10 +6,8 @@ function PostThumbnail({ item }) {
     <div className={styles.Post_Thumbnail} width={20}>
       {item.thumbnail && (
         <img
-          className="thread-thumbnail"
+          className={styles.Post_ThumbnailImage}
           src={item.thumbnail}
-          width={80}
-          height={80}
           alt="thumbnail"
         />
       )}

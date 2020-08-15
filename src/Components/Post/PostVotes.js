@@ -6,7 +6,7 @@ import DetailsIcon from "@material-ui/icons/Details";
 
 function PostVotes({ item }) {
   return (
-    <div className={styles.Post_StyledItemRight} width={20}>
+    <div className={styles.PostDetails_Votes} width={20}>
       <div
         style={{
           display: "flex",
@@ -14,7 +14,7 @@ function PostVotes({ item }) {
           alignItems: "center",
         }}
       >
-        <HelpOutlineIcon />
+        <HelpOutlineIcon className={styles.PostSelect_ItemIcons} />
         <p style={{ marginLeft: 5 }}>Helpful: {item.helped}</p>
       </div>
       <div
@@ -24,7 +24,7 @@ function PostVotes({ item }) {
           alignItems: "center",
         }}
       >
-        <CachedIcon />
+        <CachedIcon className={styles.PostSelect_ItemIcons} />
         <p style={{ marginLeft: 5 }}>Comprehensive: {item.comprehensive}</p>
       </div>
       <div
@@ -34,7 +34,7 @@ function PostVotes({ item }) {
           alignItems: "center",
         }}
       >
-        <DetailsIcon />
+        <DetailsIcon className={styles.PostSelect_ItemIcons} />
         <p style={{ marginLeft: 5 }}>Detailed: {item.detailed}</p>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import "../../App.css";
 import styles from "./sidePanel.module.css";
-import SidePanelHeader from "./SidePanelHeader";
 import SidePanelList from "./SidePanelList";
+import SidePanelShortcuts from "./SidePanelShortcuts";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setRoom } from "../../redux/actions";
@@ -19,7 +19,7 @@ function SidePanel() {
             <img src={logo} className="logo" alt="logo" />
           </Link>
         </div>
-        <SidePanelHeader />
+        <SidePanelShortcuts />
         <SidePanelList />
       </div>
     </div>

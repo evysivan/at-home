@@ -10,6 +10,6 @@ export const SET_USER = "SET_USER";
 export const SET_LOADING = "SET_LOADING";
 
 //**=======DB=======*/
-export const DB_SET_ROOMS = "DB_SET_ROOMS";
-export const DB_SET_POSTS = "DB_SET_POSTS";
-export const DB_SET_COMMENTS = "DB_SET_COMMENTS";
+export const DB_ADD_ROOMS = "DB_ADD_ROOMS";
+export const DB_ADD_POSTS = "DB_ADD_POSTS";
+export const DB_ADD_COMMENTS = "DB_ADD_COMMENTS";

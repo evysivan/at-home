@@ -85,7 +85,34 @@ export const getCollectionDB = async (collectionName, addCollectionToStore) => {
         console.log("Removed doc: ", change.doc.data());
       }
     });
-    console.log("tata", addedDocuments);
     addCollectionToStore(addedDocuments);
   });
+};
+
+export const addPost = async (
+  currentRoomId,
+  title = "bla",
+  content = "bla"
+) => {
+  var userId = await auth.currentUser.uid;
+  console.log(await db.collection("users").doc(userId).id);
+
+  db.collection("posts")
+    .add({
+      author: await db.collection("users").doc(userId),
+      title,
+      content,
+      room: await db.doc("rooms/" + currentRoomId),
+      time: new Date(),
+      comprehensive: 0,
+      detailed: 0,
+      helped: 0,
+      image: "",
+    })
+    .then(function () {
+      console.log("Document successfully written!");
+    })
+    .catch(function (error) {
+      console.error("Error writing document: ", error);
+    });
 };

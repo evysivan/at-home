@@ -7,13 +7,13 @@ import { setRoom } from "../../redux/actions";
 import Button from "@material-ui/core/Button";
 import bg from "../../assets/sidePanelHeaderBG.jpg";
 
-const SidePanelHeader = () => {
+const SidePanelHeader = ({ isItems }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.SidePanelHeader_StyledHeader}>
-      <p style={{ margin: 0, color: "gray" }}>Subscribed rooms</p>
-    </div>
+    <p className={styles.SidePanelHeader_StyledHeader}>
+      {isItems ? "Subscribed rooms" : "No Subscribed Rooms Yet"}
+    </p>
   );
 };
 

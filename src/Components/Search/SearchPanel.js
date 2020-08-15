@@ -15,14 +15,21 @@ import {
 } from "../../redux/actions";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
+import { makeStyles } from "@material-ui/core/styles";
+import { yellow } from "@material-ui/core/colors";
 
+const useStyles = makeStyles({
+  Autocomplete: {
+    width: "80%",
+  },
+});
 function SearchPanel() {
   const [searchText, setSearchText] = useState("");
   const rooms = useSelector(getAllRooms);
-  console.log("kakaka", rooms);
   const subscriptions = useSelector(getAllSubscribedRooms);
   const options = rooms ? rooms : [];
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const isRoomSubscribed = (id) => {
     if (subscriptions.includes(id)) return true;
@@ -30,9 +37,10 @@ function SearchPanel() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row", flex: 0.8 }}>
       <Autocomplete
         clearOnBlur={false}
+        className={classes.Autocomplete}
         // onBlur={() => setSearchText("")}
         id="combo-box-demo"
         options={options}

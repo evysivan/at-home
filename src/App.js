@@ -7,9 +7,9 @@ import { getIsLoading } from "./redux/selectors";
 import {
   setUser,
   setLoading,
-  dbSetRooms,
-  dbSetPosts,
-  dbSetComments,
+  dbAddRooms,
+  dbAddPosts,
+  dbAddComments,
 } from "./redux/actions";
 import Loading from "./Components/Loading";
 
@@ -25,10 +25,10 @@ function App() {
   };
 
   useEffect(() => {
-    getCollectionDB("rooms", (rooms) => dispatch(dbSetRooms(rooms)));
-    getCollectionDB("posts", (posts) => dispatch(dbSetPosts(posts)));
+    getCollectionDB("rooms", (rooms) => dispatch(dbAddRooms(rooms)));
+    getCollectionDB("posts", (posts) => dispatch(dbAddPosts(posts)));
     getCollectionDB("comments", (comments) =>
-      dispatch(dbSetComments(comments))
+      dispatch(dbAddComments(comments))
     );
   }, []);
 
