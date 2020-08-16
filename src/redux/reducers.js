@@ -91,9 +91,6 @@ const rootReducer = (state = initialState, action) => {
         user: action.user,
       };
     case AT.DB_ADD_ROOMS:
-      const stateRooms = state.rooms;
-      console.log([].concat(state.rooms, action.rooms));
-
       return {
         ...state,
         rooms: action.rooms,
@@ -101,12 +98,12 @@ const rootReducer = (state = initialState, action) => {
     case AT.DB_ADD_POSTS:
       return {
         ...state,
-        threads: [...state.threads, ...action.posts],
+        threads: action.posts,
       };
     case AT.DB_ADD_COMMENTS:
       return {
         ...state,
-        comments: [...state.comments, ...action.comments],
+        comments: action.comments,
       };
     default:
       return state;

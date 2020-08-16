@@ -42,10 +42,12 @@ export const setLoading = (isLoading) => ({
 });
 
 //**=======DB=======*/
-export const dbAddRooms = (rooms) => ({
-  type: AT.DB_ADD_ROOMS,
-  rooms,
-});
+export const dbAddRooms = (rooms) => {
+  return {
+    type: AT.DB_ADD_ROOMS,
+    rooms,
+  };
+};
 export const dbAddPosts = (posts) => ({
   type: AT.DB_ADD_POSTS,
   posts,

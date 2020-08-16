@@ -51,6 +51,7 @@ const getUserRef = async (docData) => {
 export const getCollectionDB = async (collectionName, addCollectionToStore) => {
   await db.collection(collectionName).onSnapshot((snapshot) => {
     let addedDocuments = [];
+    console.log(snapshot.docChanges().map((item) => item.doc.data()));
     snapshot.docChanges().forEach(async (change) => {
       if (change.type === "added") {
         const docData = await change.doc.data();
