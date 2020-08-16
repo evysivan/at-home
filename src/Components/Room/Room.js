@@ -3,14 +3,16 @@ import { useSelector } from "react-redux";
 import RoomHeader from "./RoomHeader";
 import { getCurrentRoomDetails } from "../../redux/selectors";
 import MainPanelList from "../MainPanel/MainPanelList";
+import RoomMainPanel from "./RoomMainPanel";
+import styles from "./room.module.css";
 
 function Room(props) {
   const room = useSelector(getCurrentRoomDetails);
 
   return (
-    <div style={{ flex: 0.8, overflow: "hidden" }}>
+    <div className={styles.Room_Container}>
       <RoomHeader title={room.title} id={room.id} />
-      <MainPanelList room={true} />
+      <RoomMainPanel room={true} />
     </div>
   );
 }

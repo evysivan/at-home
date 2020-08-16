@@ -1,0 +1,189 @@
+.StyledComment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgb(169, 223, 248);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.PostPage_container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 15vw;
+}
+
+.Post_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.PostDetails_Container {
+  background-color: rgba(255, 255, 255, 1);
+  min-height: 100px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0.65;
+  margin: 0 10px 0 10px;
+}
+
+.Post_Thumbnail {
+  background-color: rgba(255, 255, 255, 1);
+  min-height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex: 0.15;
+}
+
+.PostDetails_Votes {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.PostLeftPanel_User {
+  color: rgba(0, 0, 0, 0.6);
+  margin-right: 10px;
+  font-weight: 600;
+}
+.PostLeftPanel_UserName {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.PostLeftPanel_TimeDiff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.PostLeftPanel_TopDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.PostLeftPanel_BottomDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.PostLeftPanel_BottomDetails > p {
+  margin: 5px 0;
+}
+
+.Post_BodyContainer {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  border-radius: 10px;
+  padding: 5px;
+  height: 30%;
+  width: 100%;
+}
+
+.PostPage_CommentContainer {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 20px 0;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+
+.MuiSvgIcon-root {
+  background-color: blue;
+  color: aqua;
+}
+
+.PostSelect_SelectItem {
+  margin-left: 10px;
+}
+
+.PostSelect_ItemIcons {
+  color: rgba(124, 131, 212, 1);
+}
+.Post_ThumbnailImage {
+  width: 70%;
+  height: auto;
+}
+
+.Post_LeftPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 1);
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  flex: 0.2;
+  padding: 5px;
+}
+
+.PostDetails_Header {
+  background-color: rgb(248, 248, 248);
+  border-radius: 5px 5px 0 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PostDetails_Title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PostDetails_Actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(248, 248, 248);
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.PostDetails_BottomContainer {
+  padding: 10px;
+}

@@ -1,6 +1,5 @@
 import React from "react";
-import "./sidePanel.css";
-import styled from "styled-components";
+import styles from "./sidePanel.module.css";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -18,18 +17,25 @@ const SidePanelListItem = ({ room }) => {
 
   return (
     <Link to="/room">
-      <li className="SidePanelListItem_LiContainer" style={{ backgroundColor: isCurrentRoom ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.1)" }}>
-        <div className="SidePanelListItem_Container">
+      <li
+        className={styles.SidePanelListItem_LiContainer}
+        style={{
+          backgroundColor: isCurrentRoom
+            ? "rgba(0,0,0,0.3)"
+            : "rgba(0,0,0,0.1)",
+        }}
+      >
+        <div className={styles.SidePanelListItem_Container}>
           <Button
-            style={{ width: "100%" }}
+            className={styles.SidePanelListItem_Button}
             onClick={() => {
               dispatch(setRoom(room.id));
             }}
           >
-            <p>{room.title}</p>
+            {room.title}
           </Button>
           <IconButton aria-label="delete" size="small">
-            <MoreVertIcon fontSize="inherit" />
+            <MoreVertIcon style={{ color: "white" }} fontSize="inherit" />
           </IconButton>
         </div>
       </li>

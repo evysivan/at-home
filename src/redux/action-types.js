@@ -6,3 +6,10 @@ export const ADD_SUBSCRIPTION = "ADD_SUBSCRIPTION";
 export const REMOVE_SUBSCRIPTION = "REMOVE_SUBSCRIPTION";
 export const SET_SEARCH_TERM = "SET_SEARCH_TERM";
 export const SET_POST = "SET_POST";
+export const SET_USER = "SET_USER";
+export const SET_LOADING = "SET_LOADING";
+
+//**=======DB=======*/
+export const DB_ADD_ROOMS = "DB_ADD_ROOMS";
+export const DB_ADD_POSTS = "DB_ADD_POSTS";
+export const DB_ADD_COMMENTS = "DB_ADD_COMMENTS";

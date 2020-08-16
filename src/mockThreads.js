@@ -153,7 +153,7 @@ const mock = [
     },
   },
   {
-    id: 11,
+    id: 12,
     room: { title: "104134 - אלגברה מודרנית ח", roomId: 8 },
     votes: 0,
     thumbnail: txt,
@@ -166,7 +166,7 @@ const mock = [
     },
   },
   {
-    id: 12,
+    id: 13,
     room: { title: "104134 - אלגברה מודרנית ח", roomId: 8 },
     votes: 4,
     thumbnail: pdf,

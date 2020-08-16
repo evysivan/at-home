@@ -1,0 +1,60 @@
+.StyledHome {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* background-image: url(${bg3}); */
+  /* background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; */
+  /* gray gradient */
+  /* background: linear-gradient(160deg, #2c3e50, #bdc3c7);  */
+  /* horizon gradient */
+  /* background: linear-gradient(160deg, #003973, #e5e5be); 
+    background: linear-gradient(
+    160deg,
+    #0f2027,
+    #203a43,
+    #2c5364 */
+  /* ); black gradient */
+  /* background: linear-gradient(
+    160deg,
+    #1f4037,
+    #99f2c8 */
+  /* ); harvey green gradient */
+}
+
+.Home_StyledContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  width: 100vw;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.StyledParentContainer {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  width: 100vw;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.StyledImage {
+  width: "70px";
+  height: "70px";
+  opacity: 0.6;
+}
+
+.Home_Container {
+  flex: 0.85;
+  display: flex;
+  flex-direction: column;
+}

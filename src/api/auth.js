@@ -1,11 +1,37 @@
 import { auth } from "./firebaseAPI";
 
-export const createUser = async (email, password) => {
+// // Login
+export const Login = (initializeUser) => {
+  return auth.onAuthStateChanged((user) => {
+    if (user) {
+      initializeUser(user);
+    } else {
+      initializeUser(null);
+    }
+  });
+};
+
+// Sign Up
+export const createUser = (email, password) => {
   console.log(email, password);
-  try {
-    const user = await auth.createUserWithEmailAndPassword(email, password);
-    return user;
-  } catch (e) {
-    console.log(e);
-  }
+  return auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((user) => user)
+    .catch((error) => ({ isError: true, ...error }));
+};
+
+// Sign Out
+export const SignOut = () => {
+  auth
+    .signOut()
+    .then(() => console.log("User signed out"))
+    .catch((e) => console.log(e));
+};
+
+// Sign In
+export const SignIn = (email, password) => {
+  return auth
+    .signInWithEmailAndPassword(email, password)
+    .then((user) => user)
+    .catch((error) => ({ isError: true, ...error }));
 };
