@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import {
   getAllSubscribedRoomThreads,
   getAllRoomThreads,
-  getCurrentRoom,
 } from "../../redux/selectors";
 import AddPostPanel from "./AddPostPanel";
 

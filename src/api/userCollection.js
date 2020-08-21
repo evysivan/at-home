@@ -1,7 +1,6 @@
 import * as firebase from "firebase";
 import { getRoom } from "./roomsCollection";
 
-const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 const storageRef = storage.ref();
@@ -17,12 +16,22 @@ export const getUserByUid = async (userUID) => {
   return user.data();
 };
 
-export const getUserSubscribedRooms = async (subscribedRoomIds) => {
+export const getUserSubscribedRooms = (userUID, setSubscribedRooms) => {
+  db.collection("users")
+    .doc(userUID)
+    .collection("subscribedRooms")
+    .onSnapshot(async function (snapshot) {
+      const subscribedRoomsIds = snapshot.docs.map((doc) => doc.id);
+      setSubscribedRooms(await getUserSubscribedRoomsByIds(subscribedRoomsIds));
+    });
+};
+
+export const getUserSubscribedRoomsByIds = async (subscribedRoomIds) => {
   const rooms = subscribedRoomIds.map(async (roomId) => {
     const room = await getRoom(roomId);
     return {
       id: roomId,
-      room,
+      ...room,
     };
   });
 
@@ -45,6 +54,17 @@ export const subscribeUserToRoom = (user, roomId) => {
       .collection("subscribedRooms")
       .doc(roomId)
       .set({});
+  } catch (error) {
+    return error;
+  }
+};
+export const unsubscribeUserToRoom = (user, roomId) => {
+  try {
+    db.collection("users")
+      .doc(user.uid)
+      .collection("subscribedRooms")
+      .doc(roomId)
+      .delete();
   } catch (error) {
     return error;
   }

@@ -63,6 +63,7 @@
 
 .SidePanelListItem_Button {
   color: white !important;
+  width: 100%;
 }
 
 .SidePanel_HomeLogoContainer {

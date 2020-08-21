@@ -2,14 +2,6 @@
 export const getCurrentRoom = (state) => state.currentRoom;
 export const getAllRooms = (state) => state.rooms;
 export const getAllSubscribedRooms = (state) => state.subscribedRooms;
-export const getCurrentRoomDetails = (state) => {
-  if (state.currentRoom) {
-    return state.rooms[
-      state.rooms.findIndex((room) => room.id === state.currentRoom)
-    ];
-  }
-  return {};
-};
 export const getAllSubscribedRoomThreads = (state) => {
   const subscriptions = state.subscribedRooms;
   let threads = [...state.threads];

@@ -10,6 +10,7 @@ import {
   dbAddRooms,
   dbAddPosts,
   dbAddComments,
+  setUserSubscribedRooms,
 } from "./redux/actions";
 import Loading from "./Components/Loading";
 import * as postsDB from "./api/postsCollection";
@@ -26,37 +27,24 @@ function App() {
 
   const initializeUser = (user) => {
     dispatch(setUser(user));
-    dispatch(setLoading(false));
   };
-
-  useEffect(() => {
-    (async () => {
-      commentsDB.addComment(
-        "zR9a361LknZ3fDoBSPOBYqb4L5p1",
-        "h6RaLjrYb23ZaADztfmq"
-      );
-      console.log(
-        await commentsDB.getAllCommentsFromPost("h6RaLjrYb23ZaADztfmq")
-      );
-      // if (user) {
-      //   console.log(user.uid);
-      //   console.log(usersDB.subscribeUserToRoom(user, "3PcMDlfqugDj6CkJQX3B"));
-      // }
-      // console.log(await usersDB.getCurrentUser("j8dJ2CMEzVMDIAqMGsG0QqLG1yG2"));
-      // console.log(
-      //   await usersDB.getUserSubscribedRooms(["3PcMDlfqugDj6CkJQX3B"])
-      // );
-    })();
-    // getCollectionDB("rooms", (rooms) => dispatch(dbAddRooms(rooms)));
-    // getCollectionDB("posts", (posts) => dispatch(dbAddPosts(posts)));
-    // getCollectionDB("comments", (comments) =>
-    //   dispatch(dbAddComments(comments))
-    // );
-  }, []);
-
   useEffect(() => {
     const unsubscribeAuth = Login(initializeUser);
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      dispatch(dbAddRooms(await roomsDB.getAllRooms()));
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    usersDB.getUserSubscribedRooms(user.uid, (rooms) => {
+      dispatch(setUserSubscribedRooms(rooms));
+      dispatch(setLoading(false));
+    });
+  }, [user]);
 
   return isLoading ? <Loading /> : <Home />;
 }

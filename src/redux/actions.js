@@ -17,14 +17,6 @@ export const setSortCriteria = (criteria) => ({
   type: AT.SORT_THREADS_CRITERIA,
   criteria,
 });
-export const addRoomSubscription = (roomId) => ({
-  type: AT.ADD_SUBSCRIPTION,
-  roomId,
-});
-export const removeRoomSubscription = (roomId) => ({
-  type: AT.REMOVE_SUBSCRIPTION,
-  roomId,
-});
 export const setSearchTerm = (searchTerm) => ({
   type: AT.SET_SEARCH_TERM,
   searchTerm,
@@ -43,6 +35,10 @@ export const setLoading = (isLoading) => ({
   isLoading,
 });
 
+export const setUserSubscribedRooms = (subscribedRooms) => ({
+  type: AT.SET_USER_SUBSCRIPTIONS,
+  subscribedRooms,
+});
 //**=======DB=======*/
 export const dbAddRooms = (rooms) => {
   return {

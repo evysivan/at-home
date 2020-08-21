@@ -1,6 +1,5 @@
 import * as firebase from "firebase";
 
-const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 const storageRef = storage.ref();

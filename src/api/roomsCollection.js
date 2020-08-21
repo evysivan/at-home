@@ -1,10 +1,8 @@
 import * as firebase from "firebase";
 
-const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 const storageRef = storage.ref();
-var currentUserId = auth.currentUser;
 
 const roomSchema = {
   title: "",
@@ -28,7 +26,7 @@ const getRoomRefs = async (subscribedUsersSnapshot) => {
   }));
 };
 
-export const getAllRooms = async () => {
+export const getAllRoomsWithSubscribedUsers = async () => {
   const snapshot = await db.collection("rooms").get();
   const roomWithRefs = snapshot.docs.map(async (doc) => ({
     ...doc.data(),
@@ -37,6 +35,16 @@ export const getAllRooms = async () => {
     ),
   }));
   const rooms = await Promise.all(roomWithRefs);
+  return rooms;
+};
+
+export const getAllRooms = async () => {
+  const snapshot = await db.collection("rooms").get();
+  const rooms = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  console.log(rooms);
   return rooms;
 };
 

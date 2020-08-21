@@ -63,17 +63,10 @@ const rootReducer = (state = initialState, action) => {
         threadsSort: action.criteria,
         // threads,
       };
-    case AT.ADD_SUBSCRIPTION:
+    case AT.SET_USER_SUBSCRIPTIONS:
       return {
         ...state,
-        subscribedRooms: [...state.subscribedRooms, action.roomId],
-      };
-    case AT.REMOVE_SUBSCRIPTION:
-      return {
-        ...state,
-        subscribedRooms: state.subscribedRooms.filter(
-          (item) => item !== action.roomId
-        ),
+        subscribedRooms: action.subscribedRooms,
       };
     case AT.SET_SEARCH_TERM:
       return {

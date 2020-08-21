@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import RoomHeader from "./RoomHeader";
-import { getCurrentRoomDetails } from "../../redux/selectors";
+import { getCurrentRoomDetails, getCurrentRoom } from "../../redux/selectors";
 import MainPanelList from "../MainPanel/MainPanelList";
 import RoomMainPanel from "./RoomMainPanel";
 import styles from "./room.module.css";
 
 function Room(props) {
-  const room = useSelector(getCurrentRoomDetails);
+  const room = useSelector(getCurrentRoom);
 
   return (
     <div className={styles.Room_Container}>

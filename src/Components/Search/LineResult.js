@@ -2,22 +2,23 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllSubscribedRooms } from "../../redux/selectors";
+import { getAllSubscribedRooms, getUser } from "../../redux/selectors";
+import { setRoom } from "../../redux/actions";
 import {
-  addRoomSubscription,
-  removeRoomSubscription,
-  setRoom,
-} from "../../redux/actions";
+  subscribeUserToRoom,
+  unsubscribeUserToRoom,
+} from "../../api/userCollection";
 import { Link } from "react-router-dom";
 
 function LineResult({ room }) {
   const { title, id } = room;
   const subscriptions = useSelector(getAllSubscribedRooms);
+  const user = useSelector(getUser);
 
   const dispatch = useDispatch();
 
   const isRoomSubscribed = (id) => {
-    if (subscriptions.includes(id)) return true;
+    if (subscriptions.filter((room) => room.id == id).length > 0) return true;
     return false;
   };
 
@@ -32,7 +33,7 @@ function LineResult({ room }) {
           width: "100%",
         }}
         onClick={() => {
-          dispatch(setRoom(id));
+          dispatch(setRoom(room));
         }}
       >
         <p>{title}</p>
@@ -42,9 +43,9 @@ function LineResult({ room }) {
           color="default"
           startIcon={<AddIcon />}
           onClick={() => {
-            if (isRoomSubscribed(id)) dispatch(removeRoomSubscription(id));
+            if (isRoomSubscribed(id)) unsubscribeUserToRoom(user, id);
             else {
-              dispatch(addRoomSubscription(id));
+              subscribeUserToRoom(user, id);
             }
           }}
         >

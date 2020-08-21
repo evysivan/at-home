@@ -65,7 +65,8 @@ const useStyles = makeStyles({
 
 const AddPostPanel = () => {
   const classes = useStyles();
-  const currentRoomId = useSelector(getCurrentRoom);
+  const currentRoom = useSelector(getCurrentRoom);
+  const currentRoomId = currentRoom.id;
 
   return (
     <ExpansionPanel className={styles.RoomListPanel_AddPost}>

@@ -12,8 +12,9 @@ import { Link } from "react-router-dom";
 const SidePanelListItem = ({ room }) => {
   const dispatch = useDispatch();
   const currentRoom = useSelector(getCurrentRoom);
+  const currentRoomId = currentRoom.id;
 
-  const isCurrentRoom = currentRoom === room.id;
+  const isCurrentRoom = currentRoomId === room.id;
 
   return (
     <Link to="/room">
@@ -29,7 +30,7 @@ const SidePanelListItem = ({ room }) => {
           <Button
             className={styles.SidePanelListItem_Button}
             onClick={() => {
-              dispatch(setRoom(room.id));
+              dispatch(setRoom(room));
             }}
           >
             {room.title}
