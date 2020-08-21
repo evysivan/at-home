@@ -1,5 +1,6 @@
 import * as AT from "./action-types";
 
+//**=======ROOMS=======*/
 export const setRoom = (room) => ({
   type: AT.SET_ROOM,
   payload: room,
@@ -32,6 +33,7 @@ export const setPost = (currentPost) => ({
   type: AT.SET_POST,
   currentPost,
 });
+//**=======USERS=======*/
 export const setUser = (user) => ({
   type: AT.SET_USER,
   user,

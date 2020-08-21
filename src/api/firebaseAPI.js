@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+require("dotenv").config();
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -10,7 +11,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASURE_ID,
 };
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
@@ -19,6 +19,7 @@ export const auth = firebase.auth();
 export const db = firebase.firestore();
 export const storage = firebase.storage();
 const storageRef = storage.ref();
+
 // export const getRoomsDB = async (addRoomsToStore) => {
 //   await db.collection("rooms").onSnapshot((snapshot) => {
 //     let addedRooms = [];

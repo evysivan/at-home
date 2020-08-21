@@ -11,6 +11,7 @@ import { createUser } from "../api/auth";
 function Register({ setShowRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showRegistered, setShowRegistered] = useState(false);
@@ -26,9 +27,9 @@ function Register({ setShowRegister }) {
             e.preventDefault();
             setLoading(true);
 
-            const response = await createUser(email, password);
+            const response = await createUser(email, password, name);
             setLoading(false);
-
+            console.log(response);
             if (response.isError) setError(response.message);
             else {
               setShowRegistered(true);
@@ -44,6 +45,12 @@ function Register({ setShowRegister }) {
           }}
         >
           <div>
+            <TextField
+              style={{ width: "100%", marginLeft: "0" }}
+              label="Name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
             <TextField
               style={{ width: "100%", marginLeft: "0" }}
               label="E-mail"

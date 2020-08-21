@@ -23,7 +23,6 @@ import { StylesContext } from "@material-ui/styles";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const user = useSelector(getUser);
-  const dispatch = useDispatch();
 
   return (
     <Route
@@ -44,14 +43,41 @@ const PrivateRoute = ({ children, ...rest }) => {
   );
 };
 
+const RedirectedRoute = ({ children, ...rest }) => {
+  const user = useSelector(getUser);
+
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        !user ? (
+          <Redirect
+            to={{
+              pathname: "/auth",
+              state: { from: location },
+            }}
+          />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
 function Home() {
   return (
     <Router>
       <div className={styles.StyledHome}>
         <Switch>
-          <Route path="/auth">
+          <RedirectedRoute path="/auth">
             <AuthContainer />
-          </Route>
+          </RedirectedRoute>
           <PrivateRoute path="/" exact>
             <div className={styles.StyledParentContainer}>
               <div className={styles.Home_StyledContainer}>

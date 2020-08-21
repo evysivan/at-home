@@ -15,7 +15,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import { useSelector } from "react-redux";
 import { getCurrentRoom } from "../../redux/selectors";
-import { addPost } from "../../api/firebaseAPI";
+import { addPost } from "../../api/postsCollection";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
