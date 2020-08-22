@@ -5,7 +5,7 @@ import { SignIn } from "../api/auth";
 import { setUser } from "../redux/actions";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
-
+import styles from "./authentication.module.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Login({ setShowRegister }) {
@@ -31,14 +31,9 @@ function Login({ setShowRegister }) {
           history.push("/");
         }
       }}
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
+      className={styles.Auth_LoginContainer}
     >
+      <p>LOGIN</p>
       <div>
         <TextField
           style={{ width: "100%", marginLeft: "0" }}
