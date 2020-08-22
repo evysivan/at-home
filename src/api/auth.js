@@ -1,4 +1,5 @@
 import { auth } from "./firebaseAPI";
+import { addUserToCollection } from "./userCollection";
 
 // // Login
 export const Login = (initializeUser) => {
@@ -12,12 +13,18 @@ export const Login = (initializeUser) => {
 };
 
 // Sign Up
-export const createUser = (email, password) => {
-  console.log(email, password);
+export const createUser = (email, password, name) => {
   return auth
     .createUserWithEmailAndPassword(email, password)
-    .then((user) => user)
-    .catch((error) => ({ isError: true, ...error }));
+    .then((userCredential) => {
+      addUserToCollection({ uid: userCredential.user.uid, name, email });
+      return userCredential.user;
+    })
+    .catch((error) => ({
+      isError: true,
+      message: error.toString(),
+      ...error,
+    }));
 };
 
 // Sign Out

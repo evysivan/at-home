@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import AddIcon from "@material-ui/icons/Add";
@@ -14,8 +14,8 @@ import PhotoIcon from "@material-ui/icons/Photo";
 import LinkIcon from "@material-ui/icons/Link";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import { useSelector } from "react-redux";
-import { getCurrentRoom } from "../../redux/selectors";
-import { addPost } from "../../api/firebaseAPI";
+import { getCurrentRoom, getUser } from "../../redux/selectors";
+import { addPost } from "../../api/postsCollection";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -65,11 +65,20 @@ const useStyles = makeStyles({
 
 const AddPostPanel = () => {
   const classes = useStyles();
-  const currentRoomId = useSelector(getCurrentRoom);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [expanded, setExpanded] = useState(false);
+  const currentRoom = useSelector(getCurrentRoom);
+  const user = useSelector(getUser);
+  const currentRoomId = currentRoom.id;
 
   return (
-    <ExpansionPanel className={styles.RoomListPanel_AddPost}>
+    <ExpansionPanel
+      className={styles.RoomListPanel_AddPost}
+      expanded={expanded}
+    >
       <ExpansionPanelSummary
+        onClick={() => setExpanded(!expanded)}
         expandIcon={<AddIcon />}
         aria-controls="panel1c-content"
         id="panel1c-header"
@@ -79,30 +88,43 @@ const AddPostPanel = () => {
       <ExpansionPanelDetails
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <TextField style={{ width: "20%" }} id="standard-basic" label="Title" />
+        <TextField
+          style={{ width: "20%" }}
+          id="standard-basic"
+          label="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <TextField
           style={{ width: "80%" }}
           id="standard-basic"
           label="Content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
       </ExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions className={classes.Actions}>
         <div>
-          <IconButton aria-label="send" className={classes.attachButton}>
+          <IconButton aria-label="attach" className={classes.attachButton}>
             <AttachFileIcon />
           </IconButton>
-          <IconButton aria-label="send" className={classes.photoButton}>
+          <IconButton aria-label="photo" className={classes.photoButton}>
             <PhotoIcon />
           </IconButton>
-          <IconButton aria-label="send" className={classes.linkButton}>
+          <IconButton aria-label="link" className={classes.linkButton}>
             <LinkIcon />
           </IconButton>
         </div>
         <IconButton
           aria-label="send"
           className={classes.sendButton}
-          onClick={() => addPost(currentRoomId)}
+          onClick={async () => {
+            addPost(currentRoomId, user, title, content);
+            setExpanded(false);
+            setContent("");
+            setTitle("");
+          }}
         >
           <SendIcon />
         </IconButton>

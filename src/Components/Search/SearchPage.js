@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import {
   getSearchTerm,
   getAllRooms,
-  getAllThreads,
+  getAllPosts,
   getAllComments,
 } from "../../redux/selectors";
 import jpg from "../../assets/file types/jpg.png";
@@ -21,13 +21,12 @@ import Comment from "../Post/Comment";
 function SearchPage(props) {
   const searchTerm = useSelector(getSearchTerm);
   const rooms = useSelector(getAllRooms);
-  const threads = useSelector(getAllThreads);
+  const posts = useSelector(getAllPosts);
   const comments = useSelector(getAllComments);
 
-  const filteredThreads = threads.filter(
-    (thread) =>
-      thread.title.includes(searchTerm) ||
-      thread.room.title.includes(searchTerm)
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.includes(searchTerm) || post.room.title.includes(searchTerm)
   );
   const filteredRooms = rooms.filter(
     (room) => room.title.includes(searchTerm) || room.title.includes(searchTerm)
@@ -113,7 +112,7 @@ function SearchPage(props) {
                   color: "rgba(0,0,0,0.6)",
                 }}
               >
-                Threads
+                Posts
               </p>
               <div
                 style={{
@@ -125,8 +124,8 @@ function SearchPage(props) {
                   padding: "10px",
                 }}
               >
-                {filteredThreads.map((thread) => (
-                  <Post item={thread} style={{ width: "100%", fontSize: 18 }} />
+                {filteredPosts.map((post) => (
+                  <Post item={post} style={{ width: "100%", fontSize: 18 }} />
                 ))}
               </div>
             </div>

@@ -1,30 +1,79 @@
+import * as firebase from "firebase";
+
 const db = firebase.firestore();
 const storage = firebase.storage();
 const storageRef = storage.ref();
-var currentUserId = await auth.currentUser.uid;
 
 const roomSchema = {
   title: "",
+  subscribedUsers: [],
 };
 
-export const getAlRooms = () => {
-  // get refereces data
+const getRoomRefs = async (subscribedUsersSnapshot) => {
+  const subscribedUsers = subscribedUsersSnapshot.docs.map((user) =>
+    user.data()
+  );
+
+  const subscribedUsersWithUsersRef = subscribedUsers.map(async (user) => ({
+    userRef: await db.collection("users").doc(user.userRef).get(),
+  }));
+  const subscribedUsersWithUsers = await Promise.all(
+    subscribedUsersWithUsersRef
+  );
+
+  return subscribedUsersWithUsers.map((user) => ({
+    userRef: user.userRef.data(),
+  }));
 };
 
-export const getRoom = (id) => {
-  // get refereces data
+export const getAllRoomsWithSubscribedUsers = async () => {
+  const snapshot = await db.collection("rooms").get();
+  const roomWithRefs = snapshot.docs.map(async (doc) => ({
+    ...doc.data(),
+    subscribedUsers: await getRoomRefs(
+      await doc.ref.collection("subscribedUsers").get()
+    ),
+  }));
+  const rooms = await Promise.all(roomWithRefs);
+  return rooms;
 };
 
-export const getAllCommentsFromPosts = (posts) => {};
+export const getAllRooms = async () => {
+  const snapshot = await db.collection("rooms").get();
+  const rooms = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  console.log(rooms);
+  return rooms;
+};
 
-export const addComment = () => {};
+export const getRoom = async (id) => {
+  const snapshot = await db.collection("rooms").doc(id).get();
+  return snapshot.data();
+};
 
-export const updateComment = () => {};
+export const addRoom = (title) => {
+  db.collection("rooms")
+    .add({
+      title,
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+};
 
-export const removeComment = () => {};
-
-export const addLike = (type) => {};
-
-export const removeLike = (type) => {};
-
-export const getCommentFile = (type) => {};
+export const removeRoom = (docId) => {
+  db.collection("rooms")
+    .doc(docId)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+    })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+};

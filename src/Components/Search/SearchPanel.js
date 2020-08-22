@@ -5,14 +5,18 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, getAllSubscribedRooms } from "../../redux/selectors";
+import {
+  getAllRooms,
+  getAllSubscribedRooms,
+  getUser,
+} from "../../redux/selectors";
 import { setSearchTerm } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import { setRoom } from "../../redux/actions";
 import {
-  setRoom,
-  addRoomSubscription,
-  removeRoomSubscription,
-} from "../../redux/actions";
+  subscribeUserToRoom,
+  unsubscribeUserToRoom,
+} from "../../api/userCollection";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,9 +34,10 @@ function SearchPanel() {
   const options = rooms ? rooms : [];
   const dispatch = useDispatch();
   const classes = useStyles();
+  const user = useSelector(getUser);
 
   const isRoomSubscribed = (id) => {
-    if (subscriptions.includes(id)) return true;
+    if (subscriptions.filter((room) => room.id == id).length > 0) return true;
     return false;
   };
 
@@ -55,7 +60,7 @@ function SearchPanel() {
                 justifyContent: "space-between",
               }}
               onClick={() => {
-                dispatch(setRoom(option.id));
+                dispatch(setRoom(option));
               }}
             >
               <p>{option.title}</p>
@@ -66,9 +71,9 @@ function SearchPanel() {
                 startIcon={<AddIcon />}
                 onClick={() => {
                   if (isRoomSubscribed(option.id))
-                    dispatch(removeRoomSubscription(option.id));
+                    unsubscribeUserToRoom(user, option.id);
                   else {
-                    dispatch(addRoomSubscription(option.id));
+                    subscribeUserToRoom(user, option.id);
                   }
                 }}
               >

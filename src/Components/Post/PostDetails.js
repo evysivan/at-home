@@ -9,6 +9,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import CommentIcon from "@material-ui/icons/Comment";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import PostVotes from "./PostVotes";
+import { removePost } from "../../api/postsCollection";
 
 import styles from "./post.module.css";
 
@@ -30,7 +31,10 @@ function PostDetails({ item, style }) {
               {item.room.title}
             </span>
           </p>
-          <Button>Edit</Button>
+          <div>
+            <Button>Edit</Button>
+            <Button onClick={() => removePost(item.id)}>Delete</Button>
+          </div>
         </div>
         <div className={styles.PostDetails_BottomContainer}>
           <div className={styles.PostDetails_Title}>

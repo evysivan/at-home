@@ -1,7 +1,4 @@
 import * as AT from "./action-types";
-import mockThreads from "../mockThreads";
-import mockRooms from "../roomMock";
-import mockComments from "../mockComments";
 import _ from "lodash";
 
 const initialState = {
@@ -9,9 +6,9 @@ const initialState = {
   currentRoom: "",
   currentPost: "",
   rooms: [],
-  threads: [],
+  posts: [],
   comments: [],
-  threadsSort: "Hot",
+  postsSort: "Hot",
   subscribedRooms: [],
   searchTerm: "",
   user: null,
@@ -32,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
     case AT.VOTE_UP:
       return {
         ...state,
-        threads: state.threads.map((thread) => {
+        posts: state.posts.map((thread) => {
           if (thread.id === action.payload)
             return { ...thread, votes: thread.votes + 1 };
           return thread;
@@ -41,39 +38,21 @@ const rootReducer = (state = initialState, action) => {
     case AT.VOTE_DOWN:
       return {
         ...state,
-        threads: state.threads.map((thread) => {
+        posts: state.posts.map((thread) => {
           if (thread.id === action.payload)
             return { ...thread, votes: thread.votes - 1 };
           return thread;
         }),
       };
-    case AT.SORT_THREADS_CRITERIA:
-      //   let threads = state.threads;
-
-      //   if (action.criteria === "Hot" || action.criteria === "Viewed") {
-      //     threads = state.threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
-      //   } else if (action.criteria === "Latest") {
-      //     threads = state.threads.sort((a, b) =>
-      //       a.details.time > b.details.time ? -1 : 1
-      //     );
-      //   }
-
+    case AT.SORT_POSTS_CRITERIA:
       return {
         ...state,
-        threadsSort: action.criteria,
-        // threads,
+        postsSort: action.criteria,
       };
-    case AT.ADD_SUBSCRIPTION:
+    case AT.SET_USER_SUBSCRIPTIONS:
       return {
         ...state,
-        subscribedRooms: [...state.subscribedRooms, action.roomId],
-      };
-    case AT.REMOVE_SUBSCRIPTION:
-      return {
-        ...state,
-        subscribedRooms: state.subscribedRooms.filter(
-          (item) => item !== action.roomId
-        ),
+        subscribedRooms: action.subscribedRooms,
       };
     case AT.SET_SEARCH_TERM:
       return {
@@ -98,13 +77,19 @@ const rootReducer = (state = initialState, action) => {
     case AT.DB_ADD_POSTS:
       return {
         ...state,
-        threads: action.posts,
+        posts: action.posts,
       };
-    case AT.DB_ADD_COMMENTS:
+    case AT.SET_POSTS_FROM_SUBSCRIBED_ROOMS:
+      return {
+        ...state,
+        posts: action.posts,
+      };
+    case AT.SET_COMMENTS_OF_POST:
       return {
         ...state,
         comments: action.comments,
       };
+
     default:
       return state;
   }

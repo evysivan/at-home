@@ -1,14 +1,11 @@
 import React from "react";
 import styles from "./post.module.css";
 
-function Comment({ comment, user, indent }) {
+function Comment({ comment, user, style }) {
   return (
-    <div
-      className={styles.StyledComment}
-      style={{ marginRight: indent ? "60px" : "0" }}
-    >
-      <p>{user}</p>
-      <p style={{ alignSelf: "flex-end" }}>{comment}</p>
+    <div className={styles.StyledComment} style={style}>
+      <p style={{ textDecoration: "underline" }}>{user}</p>
+      <p>{comment.content}</p>
     </div>
   );
 }

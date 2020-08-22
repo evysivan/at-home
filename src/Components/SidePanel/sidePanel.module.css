@@ -21,6 +21,7 @@
 }
 
 .SidePanelHeader_StyledHeader {
+  align-self: center;
   box-sizing: border-box;
   font-size: 18px;
   margin-top: 20px;
@@ -38,7 +39,6 @@
 
 .SidePanelListItem_LiContainer {
   color: rgba(0, 0, 0, 0.6);
-  /* direction: rtl; */
   margin: 10px;
   border-radius: 6px;
 }
@@ -63,6 +63,7 @@
 
 .SidePanelListItem_Button {
   color: white !important;
+  width: 100%;
 }
 
 .SidePanel_HomeLogoContainer {
@@ -77,4 +78,17 @@
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+}
+
+.SidePanelAddRoom_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SidePanelAddRoom_Form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

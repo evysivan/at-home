@@ -3,6 +3,7 @@ import "../../App.css";
 import styles from "./sidePanel.module.css";
 import SidePanelList from "./SidePanelList";
 import SidePanelShortcuts from "./SidePanelShortcuts";
+import SidePanelAddRoom from "./SidePanelAddRoom";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setRoom } from "../../redux/actions";
@@ -20,6 +21,7 @@ function SidePanel() {
           </Link>
         </div>
         <SidePanelShortcuts />
+        <SidePanelAddRoom />
         <SidePanelList />
       </div>
     </div>

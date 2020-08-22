@@ -3,17 +3,21 @@ import styles from "./sidePanel.module.css";
 import styled from "styled-components";
 import SidePanelListItem from "./SidePanelListItem";
 import { useSelector } from "react-redux";
-import { getAllSubscribedRooms, getAllRooms } from "../../redux/selectors";
+import {
+  getAllSubscribedRooms,
+  getAllRooms,
+  getUser,
+} from "../../redux/selectors";
 import Divider from "@material-ui/core/Divider";
 import SidePanelHeader from "./SidePanelHeader";
+import { getUserSubscribedRooms } from "../../api/userCollection";
 
 const SidePanelList = () => {
   const subscriptions = useSelector(getAllSubscribedRooms);
   const rooms = useSelector(getAllRooms);
+  const user = useSelector(getUser);
 
-  const subscribedRooms = rooms.filter((room) =>
-    subscriptions.includes(room.id)
-  );
+  const subscribedRooms = subscriptions;
 
   return (
     <>
