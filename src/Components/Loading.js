@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 function Loading() {
   return (
-    <div class={styles.Loading}>
+    <div className={styles.Loading}>
       <img src={logo} className="logo" alt="logo" />
       <CircularProgress />
     </div>

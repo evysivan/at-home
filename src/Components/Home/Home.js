@@ -75,9 +75,9 @@ function Home() {
     <Router>
       <div className={styles.StyledHome}>
         <Switch>
-          <RedirectedRoute path="/auth">
+          <Route path="/auth">
             <AuthContainer />
-          </RedirectedRoute>
+          </Route>
           <PrivateRoute path="/" exact>
             <div className={styles.StyledParentContainer}>
               <div className={styles.Home_StyledContainer}>

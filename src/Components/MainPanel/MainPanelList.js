@@ -8,7 +8,6 @@ import { getAllPosts, getAllRoomPosts } from "../../redux/selectors";
 
 const MainPanelList = ({ room }) => {
   const subscribedPosts = useSelector(getAllPosts);
-  console.log(subscribedPosts);
   const allPosts = useSelector(getAllRoomPosts);
 
   const posts = room ? allPosts : subscribedPosts;
