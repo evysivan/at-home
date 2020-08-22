@@ -26,13 +26,14 @@ export const postSchema = {
 // };
 
 const getPostRefData = async (post) => {
-  const authorRef = await post.author.get();
-  const roomRef = await post.room.get();
+  const authorRef = await db.collection("users").doc(post.author).get();
+  const roomRef = await db.collection("rooms").doc(post.room).get();
 
   return {
     ...post,
     author: authorRef.data(),
-    room: roomRef.data(),
+    room: { id: roomRef.id, ...roomRef.data() },
+    time: post.time.toDate(),
   };
 };
 
@@ -47,40 +48,66 @@ export const getPost = async (id) => {
   return await (await db.collection("posts").doc(`${id}`).get()).data();
 };
 
-export const getAllPostsByRoomID = async (roomID) => {
-  const reference = db.collection("rooms").doc(roomID);
-
+export const subscribeAllPostsByRoomID = async (roomID, setPosts) => {
   const snapshot = await db
     .collection("posts")
-    .where("room", "==", reference)
+    .where("room", "==", roomID)
+    .onSnapshot(async (snapshot) => {
+      const postsWithRefs = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const posts = await Promise.all(
+        postsWithRefs.map((post) => getPostRefData(post))
+      );
+      setPosts(posts);
+    });
+};
+export const getAllPostsByRoomID = async (roomID) => {
+  const snapshot = await db
+    .collection("posts")
+    .where("room", "==", roomID)
     .get();
-  const postsWithRefs = snapshot.docs.map((doc) => doc.data());
-  const posts = Promise.all(postsWithRefs.map((post) => getPostRefData(post)));
-
+  const postsWithRefs = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  const posts = await Promise.all(
+    postsWithRefs.map((post) => getPostRefData(post))
+  );
   return posts;
 };
 
-// Assuming subscribed-rooms is a set of roomID's
-export const getAllPostsFromSubscribedRooms = async (subscribedRooms) => {
+export const getAllPostsFromSubscribedRooms = async (userUID, setPosts) => {
+  db.collection("users")
+    .doc(userUID)
+    .collection("subscribedRooms")
+    .onSnapshot(async function (snapshot) {
+      const subscribedRoomsIds = snapshot.docs.map((doc) => doc.id);
+      setPosts(await getAllPostsFromSubscribedRoomsByIds(subscribedRoomsIds));
+    });
+};
+export const getAllPostsFromSubscribedRoomsByIds = async (subscribedRooms) => {
   let posts = [];
 
-  subscribedRooms.forEach(async (roomID) => {
+  await subscribedRooms.map(async (roomID) => {
     const postsByRoom = await getAllPostsByRoomID(roomID);
     posts.push(...postsByRoom);
   });
+  console.log(posts);
   return posts;
 };
 
-export const addPost = (roomID, userID) => {
+export const addPost = (roomID, user, title, content) => {
   db.collection("posts")
     .add({
-      title: "Bloop",
-      content: "SHISHISHIS",
-      author: "", // reference
-      room: "", //reference
+      title,
+      content,
+      author: user.uid, // reference
+      room: roomID, //reference
       time: new Date(), //Date
-      file: "", //Storage Reference
-      thumbnail: "",
+      filePath: "", //Storage Reference
+      thumbnailPath: "",
       comprehensive: 0,
       helped: 0,
       detailed: 0,

@@ -2,16 +2,21 @@ import React from "react";
 import styles from "./sidePanel.module.css";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import { Redirect } from "react-router-dom";
 
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch, useSelector } from "react-redux";
 import { setRoom } from "../../redux/actions";
-import { getCurrentRoom } from "../../redux/selectors";
+import { getCurrentRoom, getUser } from "../../redux/selectors";
 import { Link } from "react-router-dom";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { removeRoom } from "../../api/roomsCollection";
+import { unsubscribeUserToRoom } from "../../api/userCollection";
 
 const SidePanelListItem = ({ room }) => {
   const dispatch = useDispatch();
   const currentRoom = useSelector(getCurrentRoom);
+  const user = useSelector(getUser);
   const currentRoomId = currentRoom.id;
 
   const isCurrentRoom = currentRoomId === room.id;
@@ -35,8 +40,18 @@ const SidePanelListItem = ({ room }) => {
           >
             {room.title}
           </Button>
-          <IconButton aria-label="delete" size="small">
-            <MoreVertIcon style={{ color: "white" }} fontSize="inherit" />
+          <IconButton
+            aria-label="delete"
+            size="small"
+            onClick={() => {
+              unsubscribeUserToRoom(user, room.id);
+              removeRoom(room.id);
+              if (currentRoomId == room.id) {
+                dispatch(setRoom(""));
+              }
+            }}
+          >
+            <DeleteIcon style={{ color: "white" }} fontSize="inherit" />
           </IconButton>
         </div>
       </li>

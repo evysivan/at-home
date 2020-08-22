@@ -52,3 +52,28 @@ export const getRoom = async (id) => {
   const snapshot = await db.collection("rooms").doc(id).get();
   return snapshot.data();
 };
+
+export const addRoom = (title) => {
+  db.collection("rooms")
+    .add({
+      title,
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+};
+
+export const removeRoom = (docId) => {
+  db.collection("rooms")
+    .doc(docId)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+    })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+};

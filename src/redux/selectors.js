@@ -2,46 +2,48 @@
 export const getCurrentRoom = (state) => state.currentRoom;
 export const getAllRooms = (state) => state.rooms;
 export const getAllSubscribedRooms = (state) => state.subscribedRooms;
-export const getAllSubscribedRoomThreads = (state) => {
-  const subscriptions = state.subscribedRooms;
-  let threads = [...state.threads];
-  if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
-    threads = threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
-  } else if (state.threadsSort === "Latest") {
-    threads = threads.sort((a, b) => (a.time > b.time ? 1 : -1));
-  }
 
-  const subscribedThreads = threads.filter((thread) =>
-    subscriptions.includes(thread.room.roomId)
-  );
-
-  if (state.currentRoom === "") return subscribedThreads;
-  return subscribedThreads.filter(
-    (thread) => thread.room.roomId === state.currentRoom
-  );
-};
-export const getSortedThreads = (state) => {
-  if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
-    return state.threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
-  } else if (state.threadsSort === "Latest") {
-    return state.threads.sort((a, b) => (a.time > b.time ? -1 : 1));
+export const getSortedPosts = (state) => {
+  if (state.postsSort === "Hot" || state.postsSort === "Viewed") {
+    return state.posts.sort((a, b) => (a.votes > b.votes ? -1 : 1));
+  } else if (state.postsSort === "Latest") {
+    return state.posts.sort((a, b) => (a.time > b.time ? -1 : 1));
   }
-  return state.threads;
+  return state.posts;
 };
 //**==========Posts============*/
-export const getAllThreads = (state) => state.threads;
-export const getAllRoomThreads = (state) => {
-  let threads = [...state.threads];
-  if (state.threadsSort === "Hot" || state.threadsSort === "Viewed") {
-    threads = threads.sort((a, b) => (a.votes > b.votes ? -1 : 1));
-  } else if (state.threadsSort === "Latest") {
-    threads = threads.sort((a, b) => (a.time > b.time ? 1 : -1));
-  }
-  if (state.currentRoom === "") return threads;
-  return threads.filter((thread) => thread.room.roomId === state.currentRoom);
+export const getAllPosts = (state) => state.posts;
+export const getAllRoomPosts = (state) => {
+  let posts = [...state.posts];
+  // if (state.postsSort === "Hot" || state.postsSort === "Viewed") {
+  //   posts = posts.sort((a, b) => (a.votes > b.votes ? -1 : 1));
+  // } else if (state.postsSort === "Latest") {
+  //   posts = posts.sort((a, b) => (a.time > b.time ? 1 : -1));
+  // }
+  if (state.currentRoom === "") return posts;
+  return posts.filter((post) => post.room.id === state.currentRoom.id);
 };
-export const getThreadsSortCriteria = (state) => state.threadsSort;
+export const getPostsSortCriteria = (state) => state.postsSort;
 export const getCurrentPost = (state) => state.currentPost;
+
+export const getAllSubscribedRoomPosts = (state) => {
+  const subscriptions = state.subscribedRooms;
+  let posts = [...state.posts];
+  if (state.postsSort === "Hot" || state.postsSort === "Viewed") {
+    posts = posts.sort((a, b) => (a.votes > b.votes ? -1 : 1));
+  } else if (state.postsSort === "Latest") {
+    posts = posts.sort((a, b) => (a.time > b.time ? 1 : -1));
+  }
+
+  const subscribedPosts = posts.filter((post) =>
+    subscriptions.includes(post.room.roomId)
+  );
+
+  if (state.currentRoom === "") return subscribedPosts;
+  return subscribedPosts.filter(
+    (post) => post.room.roomId === state.currentRoom
+  );
+};
 
 //**==========Search============*/
 export const getSearchTerm = (state) => state.searchTerm;

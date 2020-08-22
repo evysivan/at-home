@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import { Login } from "./api/auth";
-import { getIsLoading, getUser } from "./redux/selectors";
+import {
+  getIsLoading,
+  getUser,
+  getAllSubscribedRooms,
+} from "./redux/selectors";
 import {
   setUser,
   setLoading,
@@ -11,6 +15,7 @@ import {
   dbAddPosts,
   dbAddComments,
   setUserSubscribedRooms,
+  setPostsFromSubscribedRooms,
 } from "./redux/actions";
 import Loading from "./Components/Loading";
 import * as postsDB from "./api/postsCollection";
@@ -24,6 +29,7 @@ function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
   const user = useSelector(getUser);
+  const subscribedRooms = useSelector(getAllSubscribedRooms);
 
   const initializeUser = (user) => {
     dispatch(setUser(user));
@@ -42,9 +48,16 @@ function App() {
     if (!user) return;
     usersDB.getUserSubscribedRooms(user.uid, (rooms) => {
       dispatch(setUserSubscribedRooms(rooms));
-      dispatch(setLoading(false));
     });
   }, [user]);
+
+  useEffect(() => {
+    if (!user || !subscribedRooms) return;
+    postsDB.getAllPostsFromSubscribedRooms(user.uid, (posts) => {
+      dispatch(setPostsFromSubscribedRooms(posts));
+      dispatch(setLoading(false));
+    });
+  }, [subscribedRooms]);
 
   return isLoading ? <Loading /> : <Home />;
 }

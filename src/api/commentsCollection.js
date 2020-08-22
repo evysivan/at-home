@@ -12,8 +12,15 @@ const userSchema = {
   likes: 0,
 };
 export const getSubComments = async (doc) => {
-  const subCommentsRef = await doc.ref.collection("subComments").get();
-  return subCommentsRef.docs.map((comment) => comment.data());
+  const subCommentsSnapshot = await doc.ref.collection("subComments").get();
+  const subCommentsRef = subCommentsSnapshot.docs.map(async (doc) => {
+    return {
+      ...doc.data(),
+      author: await getAuthorRef(doc.data()),
+    };
+  });
+  const comments = await Promise.all(subCommentsRef);
+  return comments;
 };
 
 export const getAllComments = async () => {
@@ -26,8 +33,14 @@ export const getAllComments = async () => {
   return comments;
 };
 
-export const getComment = (id) => {
+export const getComment = async (id) => {
   // get refereces data
+};
+
+const getAuthorRef = async (data) => {
+  const authorRef = await db.collection("users").doc(data.author).get();
+  console.log(authorRef.data());
+  return authorRef.data();
 };
 
 export const getAllCommentsFromPost = async (postsId) => {
@@ -38,6 +51,7 @@ export const getAllCommentsFromPost = async (postsId) => {
     .get();
   const commentsRefs = commentsSnapshot.docs.map(async (doc) => ({
     ...doc.data(),
+    author: await getAuthorRef(doc.data()),
     subComments: await getSubComments(doc),
   }));
   const comments = await Promise.all(commentsRefs);

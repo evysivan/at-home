@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   background-color: rgb(169, 223, 248);
+  width: 80%;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
@@ -122,7 +123,7 @@
   border-radius: 5px;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   margin-right: 10px;

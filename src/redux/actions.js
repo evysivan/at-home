@@ -14,7 +14,7 @@ export const voteDown = (postId) => ({
   payload: postId,
 });
 export const setSortCriteria = (criteria) => ({
-  type: AT.SORT_THREADS_CRITERIA,
+  type: AT.SORT_POSTS_CRITERIA,
   criteria,
 });
 export const setSearchTerm = (searchTerm) => ({
@@ -39,6 +39,12 @@ export const setUserSubscribedRooms = (subscribedRooms) => ({
   type: AT.SET_USER_SUBSCRIPTIONS,
   subscribedRooms,
 });
+//**=======USERS=======*/
+export const setCommentsOfPost = (comments) => ({
+  type: AT.SET_COMMENTS_OF_POST,
+  comments,
+});
+
 //**=======DB=======*/
 export const dbAddRooms = (rooms) => {
   return {
@@ -50,7 +56,7 @@ export const dbAddPosts = (posts) => ({
   type: AT.DB_ADD_POSTS,
   posts,
 });
-export const dbAddComments = (comments) => ({
-  type: AT.DB_ADD_COMMENTS,
-  comments,
+export const setPostsFromSubscribedRooms = (posts) => ({
+  type: AT.SET_POSTS_FROM_SUBSCRIBED_ROOMS,
+  posts,
 });

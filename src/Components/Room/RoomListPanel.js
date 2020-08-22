@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./room.module.css";
 import Post from "../Post/Post";
 import { useSelector } from "react-redux";
 import {
-  getAllSubscribedRoomThreads,
-  getAllRoomThreads,
+  getAllPosts,
+  getAllRoomPosts,
+  getCurrentRoom,
 } from "../../redux/selectors";
 import AddPostPanel from "./AddPostPanel";
+import { subscribeAllPostsByRoomID } from "../../api/postsCollection";
 
 const RoomListPanel = ({ room }) => {
-  const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
-  const allThreads = useSelector(getAllRoomThreads);
+  const subscribedPosts = useSelector(getAllPosts);
+  const allPosts = useSelector(getAllRoomPosts);
+  const currentRoom = useSelector(getCurrentRoom);
+  const [roomPosts, setRoomPosts] = useState(allPosts);
 
-  const threads = room ? allThreads : subscribedThreads;
+  useEffect(() => {
+    if (!currentRoom) return;
+    (async () => {
+      subscribeAllPostsByRoomID(currentRoom.id, (rooms) =>
+        setRoomPosts([...roomPosts, ...rooms])
+      );
+    })();
+  }, [currentRoom]);
+
+  const posts = room ? roomPosts : subscribedPosts;
 
   return (
     <div className={styles.Room_RoomListPanel}>
       <AddPostPanel />
-      {threads.map((item) => (
+      {posts.map((item) => (
         <Post item={item} key={item.id} />
       ))}
     </div>

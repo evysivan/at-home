@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./post.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   getCurrentPost,
-  getAllThreads,
+  getAllPosts,
   getAllComments,
 } from "../../redux/selectors";
+import { setCommentsOfPost } from "../../redux/actions";
 import Post from "./Post";
 import Comment from "./Comment";
+import Loading from "../Loading";
+import { getAllCommentsFromPost } from "../../api/commentsCollection";
 
 function PostPage() {
+  const dispatch = useDispatch();
   const postId = useSelector(getCurrentPost);
-  const threads = useSelector(getAllThreads);
+  const posts = useSelector(getAllPosts);
   const comments = useSelector(getAllComments);
+  const [loading, setLoading] = useState(true);
 
-  const relevantComments = comments.filter(
-    (comment) => comment.postId === postId
-  );
-  const currentThread = threads.filter((thread) => thread.id === postId)[0];
+  const currentPost = posts.filter((post) => post.id === postId)[0];
+  console.log(currentPost);
+
+  useEffect(() => {
+    (async () => {
+      dispatch(setCommentsOfPost(await getAllCommentsFromPost(postId)));
+      setLoading(false);
+    })();
+  }, []);
+  console.log(comments);
+  if (loading) return <Loading />;
 
   return (
     <div className={styles.PostPage_container}>
-      {currentThread && postId && <Post item={currentThread} />}
+      {currentPost && postId && <Post item={currentPost} />}
       <div className={styles.PostPage_CommentContainer}>
-        {relevantComments ? (
-          relevantComments.map((comment) => (
-            <Comment
-              comment={comment.content}
-              user={comment.author.name}
-              indent={comment.indent}
-            />
+        {comments ? (
+          comments.map((comment) => (
+            <>
+              <Comment comment={comment} user={comment.author.name} />
+              {comment.subComments
+                ? comment.subComments.map((subComment) => (
+                    <Comment
+                      style={{ width: "70%", alignSelf: "flex-end" }}
+                      comment={subComment}
+                      user={subComment.author.name}
+                    />
+                  ))
+                : null}
+            </>
           ))
         ) : (
           <p>No comments yet...</p>

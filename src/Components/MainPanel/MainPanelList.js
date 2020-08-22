@@ -4,22 +4,22 @@ import styled from "styled-components";
 import Post from "../Post/Post";
 import Divider from "@material-ui/core/Divider";
 import { useSelector } from "react-redux";
-import {
-  getAllSubscribedRoomThreads,
-  getAllRoomThreads,
-} from "../../redux/selectors";
+import { getAllPosts, getAllRoomPosts } from "../../redux/selectors";
 
 const MainPanelList = ({ room }) => {
-  const subscribedThreads = useSelector(getAllSubscribedRoomThreads);
-  const allThreads = useSelector(getAllRoomThreads);
+  const subscribedPosts = useSelector(getAllPosts);
+  console.log(subscribedPosts);
+  const allPosts = useSelector(getAllRoomPosts);
 
-  const threads = room ? allThreads : subscribedThreads;
+  const posts = room ? allPosts : subscribedPosts;
+
+  console.log(posts);
 
   return (
     <div className={styles.MainPanelList_StyledContainer}>
-      {threads.map((item) => (
-        <div key={item.id}>
-          <Post item={item} />
+      {posts.map((post) => (
+        <div key={post.id}>
+          <Post item={post} />
         </div>
       ))}
     </div>
