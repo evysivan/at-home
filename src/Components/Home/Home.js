@@ -43,32 +43,34 @@ const PrivateRoute = ({ children, ...rest }) => {
   );
 };
 
-const RedirectedRoute = ({ children, ...rest }) => {
-  const user = useSelector(getUser);
+// TO-DO: if user goes to auth and is signed in already redirect to home
+// same goes for any other route that u can't reach straight away
+// const RedirectedRoute = ({ children, ...rest }) => {
+//   const user = useSelector(getUser);
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        !user ? (
-          <Redirect
-            to={{
-              pathname: "/auth",
-              state: { from: location },
-            }}
-          />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-};
+//   return (
+//     <Route
+//       {...rest}
+//       render={({ location }) =>
+//         !user ? (
+//           <Redirect
+//             to={{
+//               pathname: "/auth",
+//               state: { from: location },
+//             }}
+//           />
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: "/",
+//               state: { from: location },
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// };
 
 function Home() {
   return (

@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Registered from "./Registered";
+import styles from "./authentication.module.css";
 
 import { createUser } from "../api/auth";
 
@@ -18,7 +19,7 @@ function Register({ setShowRegister }) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <>
       {showRegistered ? (
         <Registered />
       ) : (
@@ -36,14 +37,10 @@ function Register({ setShowRegister }) {
               dispatch(setUser(response));
             }
           }}
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
+          className={styles.Auth_RegisterContainer}
         >
+          <p>REGISTER</p>
+
           <div>
             <TextField
               style={{ width: "100%", marginLeft: "0" }}
@@ -80,7 +77,7 @@ function Register({ setShowRegister }) {
           </div>
         </form>
       )}
-    </div>
+    </>
   );
 }
 
